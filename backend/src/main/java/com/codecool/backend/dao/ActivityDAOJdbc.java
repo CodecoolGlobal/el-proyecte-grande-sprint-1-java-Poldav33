@@ -38,6 +38,8 @@ public class ActivityDAOJdbc implements ActivityDAO{
                 ));
             }
 
+            conn.close();
+
             return activities;
 
         } catch (SQLException e) {
