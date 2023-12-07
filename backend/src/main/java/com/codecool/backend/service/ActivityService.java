@@ -19,4 +19,6 @@ public class ActivityService {
         return activityDAO.getActivities();
     }
 
+
+
 }
