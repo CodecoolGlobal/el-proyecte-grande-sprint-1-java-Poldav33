@@ -1,6 +1,7 @@
 package com.codecool.backend.service;
 
 import com.codecool.backend.controller.dto.NewUserDTO;
+import com.codecool.backend.controller.dto.SuccessDTO;
 import com.codecool.backend.controller.dto.UserDTO;
 import com.codecool.backend.dao.UserDAO;
 import org.springframework.stereotype.Service;
@@ -18,7 +19,7 @@ public class UserService {
         return userDAO.addUser(newUserDTO);
     }
 
-    public boolean userExist (UserDTO userDTO) {
-       return userDAO.checkUser(userDTO);
+    public SuccessDTO userExist (UserDTO userDTO) {
+       return new SuccessDTO(userDAO.checkUser(userDTO));
     }
 }
