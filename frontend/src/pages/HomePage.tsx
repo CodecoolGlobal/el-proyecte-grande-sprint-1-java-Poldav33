@@ -26,6 +26,7 @@ const HomePage = () => {
 
     console.log("Lefut a homepage");
 
+    // @ts-ignore
     return (
         <div className={"home-page"}>
             <NavigationBar/>
