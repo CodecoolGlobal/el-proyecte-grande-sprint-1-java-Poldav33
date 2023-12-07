@@ -12,6 +12,7 @@ interface onSaveProp {
 function RegisterUser ({onSave} : onSaveProp) {
     const [password2,setPassword2] = useState("");
     const [user,setUser] = useState({
+        username :"",
         name : "",
         password : "",
         email : ""
@@ -45,7 +46,10 @@ function RegisterUser ({onSave} : onSaveProp) {
     return(
     <form onSubmit={() => handleSubmit()}>
         <label htmlFor={"Username"}>Username:
-            <input name={"username"} value={user.name} onChange={handleChange}  type={"text"} />
+            <input name={"username"} value={user.username} onChange={handleChange}  type={"text"} />
+        </label>
+        <label htmlFor={"name"}>name:
+            <input name={"name"} value={user.name} onChange={handleChange}  type={"text"} />
         </label>
         <label htmlFor={"Password"}>Password:
             <input name={"password"} value={user.password} onChange={handleChange} type={"password"} />

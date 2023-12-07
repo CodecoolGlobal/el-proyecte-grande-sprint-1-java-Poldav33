@@ -19,7 +19,7 @@ function sendUserDatas ( user : User) {
 function UserRegisterPage () {
     const navigate = useNavigate()
 
-    function handleSendUserDatas (user: User) {
+    function handleSendUserData (user: User) {
         sendUserDatas(user)
         navigate("/login")
     }
@@ -27,7 +27,7 @@ function UserRegisterPage () {
 
     return (
         <UserRegisterForm
-        onSave={handleSendUserDatas}
+        onSave={handleSendUserData}
         />
     )
 
