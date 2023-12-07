@@ -1,6 +1,7 @@
 package com.codecool.backend.controller;
 
 import com.codecool.backend.controller.dto.NewUserDTO;
+import com.codecool.backend.controller.dto.SuccessDTO;
 import com.codecool.backend.controller.dto.UserDTO;
 import com.codecool.backend.service.UserService;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,7 +25,7 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public boolean userIsExistInDatabase (@RequestBody UserDTO userDTO) {
+    public SuccessDTO userIsExistInDatabase (@RequestBody UserDTO userDTO) {
         return userService.userExist(userDTO);
     }
 }
