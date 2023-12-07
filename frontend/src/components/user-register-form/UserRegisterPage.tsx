@@ -1,12 +1,8 @@
 import UserRegisterForm from "./index.ts";
 import {useNavigate} from "react-router-dom";
+import User from "../../type/types.ts";
 
 
-interface User {
-    username : string;
-    password : string;
-    email : string;
-}
 
 function sendUserDatas ( user : User) {
     fetch("http://localhost:8080/api/exc/register", {
