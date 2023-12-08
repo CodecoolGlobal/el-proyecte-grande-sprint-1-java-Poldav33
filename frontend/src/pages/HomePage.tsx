@@ -29,12 +29,10 @@ const HomePage = () => {
     // @ts-ignore
     return (
         <div className={"home-page"}>
-            <NavigationBar/>
             {loading && !activities ?
                 "loading"
                 :
                 <div className={"exercises-container"}>
-                    test
                     <ActivityList activityList={activities}/>
                 </div>
             }
