@@ -1,36 +1,43 @@
 import UserRegisterForm from "./index.ts";
 import {useNavigate} from "react-router-dom";
-import User from "../../type/types.ts";
+import {RegistrationUser} from "../../type/types.ts";
+import {useState} from "react";
 
 
 
-function sendUserDatas ( user : User) {
-    fetch("/api/users/register", {
-        method : "POST",
-        headers : {
-            "Content-Type": "application/json",
-        },
-        body : JSON.stringify(user)
-    }).then((res) => res.json());
-}
 
 
 
 function UserRegisterPage () {
     const navigate = useNavigate()
+    const [userRegistered, setUserRegistered] = useState(false);
+    const [errorMassage, setErrorMassage] = useState(String);
 
-    function handleSendUserData (user: User) {
-        sendUserDatas(user)
-        console.log(user);
-        navigate("/login")
+    async function sendUserDatas ( user : RegistrationUser) {
+        const response = await fetch("/api/users/register", {
+            method : "POST",
+            headers : {
+                "Content-Type": "application/json",
+            },
+            body : JSON.stringify(user)
+        });
+        if (response.ok) {
+            setUserRegistered(true)
+        } else if (response.status === 400) {
+            setErrorMassage( await response.text())
+        }
     }
 
 
+    if (!userRegistered) {
     return (
         <UserRegisterForm
-        onSave={handleSendUserData}
+        onSave={sendUserDatas}
         />
     )
+    } else {
+        navigate("/login")
+    }
 
 
 }
