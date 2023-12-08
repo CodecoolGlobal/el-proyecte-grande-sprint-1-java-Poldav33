@@ -3,9 +3,6 @@ import Userloginform from "./index.ts";
 import {useState} from "react";
 import {useNavigate} from "react-router-dom";
 
-
-
-
 function UserLoginPage(){
     const navigate = useNavigate();
     const [userIsValid, setuserIsValid]= useState(false)
@@ -20,11 +17,13 @@ function UserLoginPage(){
         setuserIsValid(data);
 
     }
+
     if(!userIsValid){
         return(
                 <Userloginform
                     loginUser={sendUserDatas}/>);
     }
-    navigate("/home")
+
+    navigate("/home");
 }
 export default UserLoginPage;
