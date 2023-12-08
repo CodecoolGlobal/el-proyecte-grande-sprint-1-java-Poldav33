@@ -7,7 +7,7 @@ function UserLoginPage(){
     const navigate = useNavigate();
     const [userIsValid, setuserIsValid]= useState(false)
     async function  sendUserDatas(user :User): Promise<void> {
-        const response =  await fetch("http://localhost:8080/api/exc/login",
+        const response =  await fetch("/api/users/login",
             {method : "POST",
                 headers : {
                     "Content-Type": "application/json",

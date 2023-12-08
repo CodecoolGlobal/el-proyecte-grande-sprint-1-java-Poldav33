@@ -45,7 +45,7 @@ public class UserDAOJdbc implements UserDAO{
 
     @Override
     public boolean checkUser(UserDTO userDTO) {
-        String sql = "SELECT * FROM users WHERE user_name = ? AND user_password = ? AND user_email = ?";
+        String sql = "SELECT * FROM users WHERE username = ? AND password = ? AND email = ?";
 
         try {
             Connection connection = connector.getConnection();

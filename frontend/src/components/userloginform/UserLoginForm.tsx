@@ -1,8 +1,8 @@
-import User from "../../type/types.ts";
+//import User from "../../type/types.ts";
 import React, {useState} from "react";
 
 interface loginUserProp{
-    loginUser :(user : User) => void
+    loginUser :(user: { password: string; name: string; email: string }) => void
 }
 const UserLogin = ({loginUser} : loginUserProp) => {
     const [user,setUser ] = useState({
@@ -10,7 +10,8 @@ const UserLogin = ({loginUser} : loginUserProp) => {
         password : "",
         email : ""
     } );
-    const handleSubmit = () => {
+    const handleSubmit = (event) => {
+        event.preventDefault();
         loginUser(user);
     }
     function handleChange(e :React.ChangeEvent<HTMLInputElement>){
@@ -27,7 +28,8 @@ const UserLogin = ({loginUser} : loginUserProp) => {
             <label htmlFor={"email"}>Email: </label>
             <input type={"text"} name={"email"} onChange={handleChange} value={user.email}/>
             <label htmlFor={"password"}>Password: </label>
-            <input type={"text"} name={"password"} onChange={handleChange} value={user.password}/>
+            <input type={"password"} name={"password"} onChange={handleChange} value={user.password}/>
+            <input type="submit" value="Submit" />
         </form>
     );
 }
