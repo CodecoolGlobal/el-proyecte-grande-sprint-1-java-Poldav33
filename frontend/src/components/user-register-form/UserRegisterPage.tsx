@@ -5,7 +5,7 @@ import User from "../../type/types.ts";
 
 
 function sendUserDatas ( user : User) {
-    fetch("http://localhost:8080/api/exc/register", {
+    fetch("/api/users/register", {
         method : "POST",
         headers : {
             "Content-Type": "application/json",
@@ -21,6 +21,7 @@ function UserRegisterPage () {
 
     function handleSendUserData (user: User) {
         sendUserDatas(user)
+        console.log(user);
         navigate("/login")
     }
 

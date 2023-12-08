@@ -19,6 +19,11 @@ public class ActivityDAOJdbc implements ActivityDAO{
     }
 
     @Override
+    public List<Activity> filteredActivities(String Activity) {
+        return null;
+    }
+
+    @Override
     public List<Activity> getActivities() {
 
         String sql = "SELECT * FROM calories";
@@ -46,5 +51,6 @@ public class ActivityDAOJdbc implements ActivityDAO{
             System.out.println(e.getMessage());
             return null;
         }
+
     }
 }
