@@ -1,11 +1,11 @@
 import React, {useState} from "react";
-import User from "../../type/types.ts";
+import {RegistrationUser} from "../../type/types.ts";
 
 
 
 
 interface onSaveProp {
-    onSave : (user : User) => void
+    onSave : (user : RegistrationUser) => void
 }
 
 
@@ -29,7 +29,8 @@ function RegisterUser ({onSave} : onSaveProp) {
     }
 
 
-    function handleSubmit () {
+    function handleSubmit (e: { preventDefault: () => void; }) {
+        e.preventDefault();
         if (userNameIsValid() && passwordIsValid()) {
             return onSave(user)
         }
