@@ -50,12 +50,13 @@ function RegisterUser ({onSave} : onSaveProp) {
         <label htmlFor={"Password"}>Password:
             <input name={"password"} value={user.password} onChange={handleChange} type={"password"} />
         </label>
-        <label htmlFor={"Re-enter password"}>Re-enter password:
+        <label htmlFor={"Enter your password again"}>Re-enter password:
             <input onChange={(e) => setPassword2(e.target.value)} type={"password"} />
         </label>
         <label htmlFor={"email"}>Email:
             <input name={"email"} value={user.email} onChange={handleChange} type={"email"} />
         </label>
+        <input type="submit" value="Submit" />
     </form>
     )
 
