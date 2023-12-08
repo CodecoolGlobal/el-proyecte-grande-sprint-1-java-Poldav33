@@ -1,10 +1,12 @@
 package com.codecool.backend.dao;
 
 import com.codecool.backend.controller.dto.NewUserDTO;
+import com.codecool.backend.controller.dto.UserDTO;
 import com.codecool.backend.dao.connection.PSQLConnector;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class UserDAOJdbc implements UserDAO{
@@ -40,4 +42,25 @@ public class UserDAOJdbc implements UserDAO{
             return false;
         }
     }
-}
+
+    @Override
+    public boolean checkUser(UserDTO userDTO) {
+        String sql = "SELECT * FROM users WHERE user_name = ? AND user_password = ? AND user_email = ?";
+
+        try {
+            Connection connection = connector.getConnection();
+            PreparedStatement psmt = connection.prepareStatement(sql);
+            psmt.setString(1, userDTO.userName());
+            psmt.setString(1, userDTO.password());
+            psmt.setString(1, userDTO.email());
+            ResultSet rs = psmt.executeQuery();
+            return !rs.wasNull();
+        }   catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+
+    }
+
