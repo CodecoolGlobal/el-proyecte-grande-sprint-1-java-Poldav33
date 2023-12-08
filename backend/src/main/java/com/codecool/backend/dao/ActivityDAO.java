@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface ActivityDAO {
     List<Activity> getActivities();
+    List<Activity> filteredActivities(String Activity);
 }

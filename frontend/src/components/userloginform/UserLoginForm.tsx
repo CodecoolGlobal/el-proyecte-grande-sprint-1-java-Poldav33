@@ -1,19 +1,36 @@
-import {Form} from "react-router-dom";
+//import User from "../../type/types.ts";
+import React, {useState} from "react";
 
-const UserLoginRegister = ({ registerUser }) => {
+interface loginUserProp{
+    loginUser :(user: { password: string; name: string; email: string }) => void
+}
+const UserLogin = ({loginUser} : loginUserProp) => {
+    const [user,setUser ] = useState({
+        name : "",
+        password : "",
+        email : ""
+    } );
     const handleSubmit = (event) => {
-        registerUser(event);
+        event.preventDefault();
+        loginUser(user);
+    }
+    function handleChange(e :React.ChangeEvent<HTMLInputElement>){
+        if(e != null  && e.target != null){
+            const {name ,value} = e.target;
+            setUser({...user,[name]:value});
+        }
+
     }
     return (
-        <Form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}>
             <label htmlFor={"user-name"}>Username: </label>
-            <input type={"text"} name={"user-name"}/>
+            <input type={"text"} name={"name"} onChange={handleChange} value={user.name}/>
             <label htmlFor={"email"}>Email: </label>
-            <input type={"text"} name={"email"}/>
+            <input type={"text"} name={"email"} onChange={handleChange} value={user.email}/>
             <label htmlFor={"password"}>Password: </label>
-            <input type={"text"} name={"password"}/>
-        </Form>
+            <input type={"password"} name={"password"} onChange={handleChange} value={user.password}/>
+            <input type="submit" value="Submit" />
+        </form>
     );
 }
-
-export default UserLoginRegister;
+export default UserLogin;

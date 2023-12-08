@@ -1,4 +1,4 @@
 
-import UserRegisterFrom from "./UserRegisterFrom.tsx";
+import UserRegisterFrom from "./UserRegisterForm.tsx";
 
 export default UserRegisterFrom;
