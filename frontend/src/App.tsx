@@ -1,15 +1,16 @@
 import './App.css'
 import Navigationbar from "./components/navigationbar";
-import HomePage from "./pages/HomePage.tsx";
+import { Outlet } from 'react-router-dom';
+
 
 function App() {
 
   return (
       <div className={"App"}>
-            <Navigationbar/>
-            <HomePage />
+            <Navigationbar />
+            <Outlet />
       </div>
   )
 }
 
-export default App
+export default App;
