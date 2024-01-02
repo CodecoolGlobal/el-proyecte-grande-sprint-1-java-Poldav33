@@ -18,8 +18,9 @@ public class ActivityController {
         this.activityService = activityService;
     }
 
-    @GetMapping("/")
+    @GetMapping("")
     public List<Activity> getActivities() {
         return activityService.getActivities();
     }
+
 }

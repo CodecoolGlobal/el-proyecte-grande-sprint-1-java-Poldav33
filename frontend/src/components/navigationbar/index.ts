@@ -1,3 +1,3 @@
-import NavigationBar from "./NavigationBar.jsx";
+import NavigationBar from "./NavigationBar.tsx";
 
 export default NavigationBar;

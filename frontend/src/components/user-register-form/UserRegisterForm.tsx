@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import User from "../../type/types.ts";
+import Button from '@mui/material/Button';
 
 
 
@@ -60,7 +61,7 @@ function RegisterUser ({onSave} : onSaveProp) {
         <label htmlFor={"email"}>Email:
             <input name={"email"} value={user.email} onChange={handleChange} type={"email"} />
         </label>
-        <input type="submit" value="Submit" />
+        <Button type={"submit"} variant="contained">Register</Button>
     </form>
     )
 

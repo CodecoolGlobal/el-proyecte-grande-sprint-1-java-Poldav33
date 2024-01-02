@@ -22,7 +22,7 @@ public class PSQLConnector {
 
     public Connection getConnection() {
         Connection connection = null;
-        System.out.println("url:"+url);
+        System.out.println("url:" + url);
         try {
             System.out.println("haho");
 
