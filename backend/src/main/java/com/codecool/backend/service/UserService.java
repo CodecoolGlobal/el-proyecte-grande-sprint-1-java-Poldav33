@@ -15,8 +15,8 @@ public class UserService {
         this.userDAO = userDAO;
     }
 
-    public boolean addUser(NewUserDTO newUserDTO) {
-        return userDAO.addUser(newUserDTO);
+    public SuccessDTO addUser(NewUserDTO newUserDTO) {
+        return new SuccessDTO(userDAO.addUser(newUserDTO));
     }
 
     public SuccessDTO userExist (UserDTO userDTO) {

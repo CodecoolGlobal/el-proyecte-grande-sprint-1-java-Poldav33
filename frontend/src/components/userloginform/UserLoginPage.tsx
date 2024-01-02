@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -12,10 +13,15 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+=======
+import {LogInUser} from "../../type/types.ts";
+import UserLoginForm from "./index.ts";
+>>>>>>> 94b6f404b356a8e251ad6b21f1e107cad0e4e442
 import {useState} from "react";
 import User from "../../type/types.ts";
 import {useNavigate} from "react-router-dom";
 
+<<<<<<< HEAD
 function Copyright(props: any) {
     return (
         <Typography variant="body2" color="text.secondary" align="center" {...props}>
@@ -43,12 +49,22 @@ export default function SignIn() {
     const [userIsValid, setUserIsValid] = useState(false);
 
     async function  sendUserDatas(user :User): Promise<void> {
+=======
+function UserLoginPage(){
+    const navigate = useNavigate();
+    const [userIsValid, setUserIsValid]= useState(false)
+    const [errorMassage, setErrorMassage] = useState(String)
+
+
+    async function  sendUserDatas(user :LogInUser): Promise<void> {
+>>>>>>> 94b6f404b356a8e251ad6b21f1e107cad0e4e442
         const response =  await fetch("/api/users/login",
             {method : "POST",
                 headers : {
                     "Content-Type": "application/json",
                 },
                 body : JSON.stringify(user)})
+<<<<<<< HEAD
         const data :boolean = await response.json();
         if (data) {
             // @ts-ignore
@@ -136,3 +152,25 @@ export default function SignIn() {
         </ThemeProvider>
     );
 }
+=======
+        if (response.ok) {
+            setUserIsValid(true);
+        } else if (response.status === 400) {
+            setErrorMassage(await response.text())
+        }
+
+
+
+    }
+
+    if(!userIsValid){
+        return(
+                <UserLoginForm
+                    loginUser={sendUserDatas}/>);
+    } else {
+        navigate("/home");
+    }
+
+}
+export default UserLoginPage;
+>>>>>>> 94b6f404b356a8e251ad6b21f1e107cad0e4e442

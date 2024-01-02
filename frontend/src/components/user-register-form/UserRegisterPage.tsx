@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import * as React from 'react';
 import { useState } from 'react';
 import { useNavigate} from "react-router-dom";
@@ -27,6 +28,15 @@ function Copyright(props: any) {
         </Typography>
     );
 }
+=======
+import UserRegisterForm from "./index.ts";
+import {useNavigate} from "react-router-dom";
+import {RegistrationUser} from "../../type/types.ts";
+import {useState} from "react";
+
+
+
+>>>>>>> 94b6f404b356a8e251ad6b21f1e107cad0e4e442
 
 // TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
@@ -40,13 +50,24 @@ export default function SignUp() {
         email : ""
     })
 
+<<<<<<< HEAD
     function sendUserDatas ( user : User) {
         fetch("/api/users/register", {
+=======
+function UserRegisterPage () {
+    const navigate = useNavigate()
+    const [userRegistered, setUserRegistered] = useState(false);
+    const [errorMassage, setErrorMassage] = useState(String);
+
+    async function sendUserDatas ( user : RegistrationUser) {
+        const response = await fetch("/api/users/register", {
+>>>>>>> 94b6f404b356a8e251ad6b21f1e107cad0e4e442
             method : "POST",
             headers : {
                 "Content-Type": "application/json",
             },
             body : JSON.stringify(user)
+<<<<<<< HEAD
         }).then((res) => res.json());
     }
 
@@ -168,3 +189,28 @@ export default function SignUp() {
         </ThemeProvider>
     );
 }
+=======
+        });
+        if (response.ok) {
+            setUserRegistered(true)
+        } else if (response.status === 400) {
+            setErrorMassage( await response.text())
+        }
+    }
+
+
+    if (!userRegistered) {
+    return (
+        <UserRegisterForm
+        onSave={sendUserDatas}
+        />
+    )
+    } else {
+        navigate("/login")
+    }
+
+
+}
+
+export default UserRegisterPage;
+>>>>>>> 94b6f404b356a8e251ad6b21f1e107cad0e4e442

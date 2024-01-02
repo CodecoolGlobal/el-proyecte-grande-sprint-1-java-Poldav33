@@ -1,16 +1,15 @@
-//import User from "../../type/types.ts";
+import {LogInUser} from "../../type/types.ts";
 import React, {useState} from "react";
 
 interface loginUserProp{
-    loginUser :(user: { password: string; name: string; email: string }) => void
+    loginUser :(user: LogInUser) => void
 }
 const UserLogin = ({loginUser} : loginUserProp) => {
     const [user,setUser ] = useState({
         name : "",
         password : "",
-        email : ""
     } );
-    const handleSubmit = (event) => {
+    const handleSubmit = (event: { preventDefault: () => void; }) => {
         event.preventDefault();
         loginUser(user);
     }
@@ -25,8 +24,6 @@ const UserLogin = ({loginUser} : loginUserProp) => {
         <form onSubmit={handleSubmit}>
             <label htmlFor={"user-name"}>Username: </label>
             <input type={"text"} name={"name"} onChange={handleChange} value={user.name}/>
-            <label htmlFor={"email"}>Email: </label>
-            <input type={"text"} name={"email"} onChange={handleChange} value={user.email}/>
             <label htmlFor={"password"}>Password: </label>
             <input type={"password"} name={"password"} onChange={handleChange} value={user.password}/>
             <input type="submit" value="Submit" />
