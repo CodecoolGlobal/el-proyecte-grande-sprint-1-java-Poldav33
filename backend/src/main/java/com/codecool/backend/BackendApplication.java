@@ -1,7 +1,7 @@
 package com.codecool.backend;
 
-import com.codecool.backend.dao.ActivityDAO;
-import com.codecool.backend.dao.ActivityDAOJdbc;
+import com.codecool.backend.dao.ExerciseDAO;
+import com.codecool.backend.dao.ExerciseDAOJdbc;
 import com.codecool.backend.dao.UserDAO;
 import com.codecool.backend.dao.UserDAOJdbc;
 import com.codecool.backend.dao.connection.PSQLConnector;
@@ -17,8 +17,8 @@ public class BackendApplication {
     }
 
     @Bean
-    public ActivityDAO activityDAO(PSQLConnector connector) {
-        return new ActivityDAOJdbc(connector);
+    public ExerciseDAO activityDAO(PSQLConnector connector) {
+        return new ExerciseDAOJdbc(connector);
     }
 
     @Bean
