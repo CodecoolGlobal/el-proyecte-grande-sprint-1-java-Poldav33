@@ -1,7 +1,7 @@
 package com.codecool.backend.dao;
 
 import com.codecool.backend.dao.connection.PSQLConnector;
-import com.codecool.backend.dao.model.Activity;
+import com.codecool.backend.dao.model.Exercise;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,25 +10,25 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ActivityDAOJdbc implements ActivityDAO{
+public class ExerciseDAOJdbc implements ExerciseDAO {
 
     private final PSQLConnector connector;
 
-    public ActivityDAOJdbc(PSQLConnector connector) {
+    public ExerciseDAOJdbc(PSQLConnector connector) {
         this.connector = connector;
     }
 
     @Override
-    public List<Activity> filteredActivities(String Activity) {
+    public List<Exercise> getFilteredExercises(String Activity) {
         return null;
     }
 
     @Override
-    public List<Activity> getActivities() {
+    public List<Exercise> getExercises() {
 
         String sql = "SELECT * FROM exercises";
 
-        List<Activity> activities = new ArrayList<>();
+        List<Exercise> activities = new ArrayList<>();
 
         try {
             Connection conn = connector.getConnection();
@@ -36,7 +36,7 @@ public class ActivityDAOJdbc implements ActivityDAO{
             ResultSet rs = statement.executeQuery();
 
             while(rs.next()) {
-                activities.add( new Activity(
+                activities.add( new Exercise(
                         rs.getInt("id"),
                         rs.getString("name"),
                         rs.getString("type"),
