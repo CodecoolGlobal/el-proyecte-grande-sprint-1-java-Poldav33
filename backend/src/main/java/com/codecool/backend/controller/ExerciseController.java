@@ -23,4 +23,8 @@ public class ExerciseController {
         return exerciseService.getActivities();
     }
 
+    @GetMapping("/filter")
+    public List<Exercise> getFilteredActivities(){
+        return null;
+    }
 }
