@@ -4,8 +4,10 @@ package com.codecool.backend.model;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
+import java.io.Serializable;
+
 @Entity
-public class Exercise {
+public class Exercise implements Serializable {
     @Id
     private long id;
     private String name;
