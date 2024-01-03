@@ -1,3 +1,3 @@
-import ActivityCard from "./ActivityCard.js";
+import ExerciseCard from "./ExerciseCard.tsx";
 
-export default ActivityCard;
+export default ExerciseCard;

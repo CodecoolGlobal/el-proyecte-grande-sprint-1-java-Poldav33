@@ -9,7 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class UserDAOJdbc implements UserDAO{
+public class UserDAOJdbc implements UserDAO {
 
     private final PSQLConnector connector;
 
@@ -22,8 +22,7 @@ public class UserDAOJdbc implements UserDAO{
 
         String sql = "INSERT INTO users (name, username, password, email) VALUES (?, ?, ?, ?)";
 
-        try {
-            Connection connection = connector.getConnection();
+        try (Connection connection = connector.getConnection()) {
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, newUserDTO.name());
             ps.setString(2, newUserDTO.username());
@@ -31,36 +30,34 @@ public class UserDAOJdbc implements UserDAO{
             ps.setString(4, newUserDTO.email());
 
             ps.executeUpdate();
-
-            connection.close();
-
             return true;
-
         } catch (SQLException e) {
             System.out.println(e.getMessage());
-
             return false;
         }
     }
 
     @Override
     public boolean checkUser(UserDTO userDTO) {
-        String sql = "SELECT * FROM users WHERE username = ? AND password = ? AND email = ?";
+        String sql = "SELECT * FROM users WHERE username = ? AND password = ?";
 
-        try {
-            Connection connection = connector.getConnection();
+        try (Connection connection = connector.getConnection()) {
             PreparedStatement psmt = connection.prepareStatement(sql);
             psmt.setString(1, userDTO.userName());
-            psmt.setString(1, userDTO.password());
-            psmt.setString(1, userDTO.email());
+            psmt.setString(2, userDTO.password());
             ResultSet rs = psmt.executeQuery();
-            return !rs.wasNull();
-        }   catch (SQLException e) {
+            if (!rs.wasNull()) {
+                return !rs.wasNull();
+            } else {
+                System.out.println("This user is didnt exist");
+                return rs.wasNull();
+            }
+
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
 
 
-
-    }
+}
 

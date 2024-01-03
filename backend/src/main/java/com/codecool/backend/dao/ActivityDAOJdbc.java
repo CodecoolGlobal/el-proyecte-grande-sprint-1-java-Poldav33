@@ -26,7 +26,7 @@ public class ActivityDAOJdbc implements ActivityDAO{
     @Override
     public List<Activity> getActivities() {
 
-        String sql = "SELECT * FROM calories";
+        String sql = "SELECT * FROM exercises";
 
         List<Activity> activities = new ArrayList<>();
 
@@ -37,9 +37,11 @@ public class ActivityDAOJdbc implements ActivityDAO{
 
             while(rs.next()) {
                 activities.add( new Activity(
-                        rs.getInt("calories_id"),
+                        rs.getInt("id"),
                         rs.getString("name"),
-                        rs.getInt("calories_per_hour")
+                        rs.getString("type"),
+                        rs.getString("muscle"),
+                        rs.getString("difficulty")
                 ));
             }
 

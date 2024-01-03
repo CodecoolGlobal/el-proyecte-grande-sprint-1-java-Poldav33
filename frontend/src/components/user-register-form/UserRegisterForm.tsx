@@ -1,11 +1,16 @@
 import React, {useState} from "react";
+<<<<<<< HEAD
 import User from "../../type/types.ts";
+import Button from '@mui/material/Button';
+=======
+import {RegistrationUser} from "../../type/types.ts";
+>>>>>>> 94b6f404b356a8e251ad6b21f1e107cad0e4e442
 
 
 
 
 interface onSaveProp {
-    onSave : (user : User) => void
+    onSave : (user : RegistrationUser) => void
 }
 
 
@@ -29,7 +34,8 @@ function RegisterUser ({onSave} : onSaveProp) {
     }
 
 
-    function handleSubmit () {
+    function handleSubmit (e: { preventDefault: () => void; }) {
+        e.preventDefault();
         if (userNameIsValid() && passwordIsValid()) {
             return onSave(user)
         }
@@ -60,7 +66,7 @@ function RegisterUser ({onSave} : onSaveProp) {
         <label htmlFor={"email"}>Email:
             <input name={"email"} value={user.email} onChange={handleChange} type={"email"} />
         </label>
-        <input type="submit" value="Submit" />
+        <Button type={"submit"} variant="contained">Register</Button>
     </form>
     )
 
