@@ -1,4 +1,4 @@
-import {LogInUser} from "../../type/types.ts";
+import LogInUser from "../../type/types.ts";
 import React, {useState} from "react";
 
 interface loginUserProp{
