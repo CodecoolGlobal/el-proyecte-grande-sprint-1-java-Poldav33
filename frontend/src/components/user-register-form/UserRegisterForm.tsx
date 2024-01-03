@@ -1,10 +1,7 @@
 import React, {useState} from "react";
-<<<<<<< HEAD
-import User from "../../type/types.ts";
 import Button from '@mui/material/Button';
-=======
 import {RegistrationUser} from "../../type/types.ts";
->>>>>>> 94b6f404b356a8e251ad6b21f1e107cad0e4e442
+
 
 
 

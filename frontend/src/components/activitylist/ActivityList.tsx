@@ -1,7 +1,7 @@
 import ExerciseCard from "../activitycard";
 import Activity from "../../type/Activity.ts";
 import {useEffect, useState, SetStateAction} from "react";
-import Activity from "../../type/Activity.ts";
+
 
 // @ts-ignore
 const ActivityList = () => {
@@ -14,6 +14,7 @@ const ActivityList = () => {
         }
         getActivities();
         }, []);
+
 
 
     return (
