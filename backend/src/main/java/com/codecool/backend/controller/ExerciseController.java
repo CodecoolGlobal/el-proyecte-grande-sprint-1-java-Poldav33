@@ -1,6 +1,6 @@
 package com.codecool.backend.controller;
 
-import com.codecool.backend.dao.model.Exercise;
+import com.codecool.backend.controller.dto.Exercise;
 import com.codecool.backend.service.ExerciseService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

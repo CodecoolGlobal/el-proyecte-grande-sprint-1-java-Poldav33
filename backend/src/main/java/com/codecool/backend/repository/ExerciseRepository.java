@@ -1,6 +1,6 @@
 package com.codecool.backend.repository;
 
-import com.codecool.backend.dao.model.Exercise;
+import com.codecool.backend.model.Exercise;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
