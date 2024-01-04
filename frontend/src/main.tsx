@@ -7,6 +7,7 @@ import HomePage from "./pages/HomePage.tsx";
 import UserRegisterPage from "./components/user-register-form/UserRegisterPage.tsx";
 import UserLoginPage from "./components/userloginform/UserLoginPage.tsx";
 import Nutrition from "./pages/Nutrition.tsx";
+import ExercisePage from "./pages/ExercisePage.tsx";
 
 const router = createBrowserRouter([
     {
@@ -28,10 +29,15 @@ const router = createBrowserRouter([
             {
                 path:"/nutrition",
                 element : <Nutrition/>
+            },
+            {
+                path:"/exercise",
+                element: <ExercisePage/>
             }
         ],
     },
 ]);
+
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
     <React.StrictMode>
