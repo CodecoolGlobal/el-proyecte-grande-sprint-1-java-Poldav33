@@ -1,4 +1,5 @@
 
-import UserRegisterFrom from "./UserRegisterForm.tsx";
 
-export default UserRegisterFrom;
+import SingUp from "./UserRegisterForm.tsx"
+
+export default SingUp;

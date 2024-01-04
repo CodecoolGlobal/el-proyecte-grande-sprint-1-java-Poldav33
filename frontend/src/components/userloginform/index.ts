@@ -1,3 +1,3 @@
-import UserLoginForm from "./UserLoginForm.tsx";
+import SignInSide from "./UserLoginForm.tsx";
 
-export default UserLoginForm;
+export default SignInSide;

@@ -1,29 +1,47 @@
-import User from "../../type/types.ts";
-import Userloginform from "./index.ts";
+import {LogInUser} from "../../type/types.ts";
+import SignInSide from "./UserLoginForm.tsx";
 import {useState} from "react";
 import {useNavigate} from "react-router-dom";
 
-function UserLoginPage(){
+
+function UserLoginPage() {
     const navigate = useNavigate();
-    const [userIsValid, setuserIsValid]= useState(false)
-    async function  sendUserDatas(user :User): Promise<void> {
-        const response =  await fetch("http://localhost:8080/api/exc/login",
-            {method : "POST",
-                headers : {
+    const [userIsValid, setUserIsValid] = useState(false)
+    const [errorMassage, setErrorMassage] = useState(String)
+
+
+    async function sendUserDatas(user: LogInUser): Promise<void> {
+        const response = await fetch("/api/users/login",
+            {
+                method: "POST",
+                headers: {
                     "Content-Type": "application/json",
                 },
-                body : JSON.stringify(user)})
-        const data :boolean = await response.json();
-        setuserIsValid(data);
+                body: JSON.stringify(user)
+            })
+
+        if (response.ok) {
+            setUserIsValid(true);
+        } else if (response.status === 400) {
+            setErrorMassage(await response.text())
+            console.log(errorMassage)
+        }
+
+        if (userIsValid) {
+            navigate('/home');
+        }
 
     }
 
-    if(!userIsValid){
-        return(
-                <Userloginform
-                    loginUser={sendUserDatas}/>);
+    if (!userIsValid) {
+        return (
+            <SignInSide
+                 onSave={sendUserDatas}/>);
+    } else {
+        navigate("/home");
     }
-
-    navigate("/home");
 }
+
+
 export default UserLoginPage;
+

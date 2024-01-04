@@ -1,8 +1,17 @@
-interface User {
+
+export interface RegistrationUser {
+    username : string,
     name : string,
     password : string,
     email : string
 }
 
-export default User
+
+export interface LogInUser {
+    email : string,
+    password : string,
+}
+
+
+
 
