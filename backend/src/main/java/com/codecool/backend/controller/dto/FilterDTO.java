@@ -1,2 +1,3 @@
-package com.codecool.backend.controller.dto;public class FilterDTO {
-}
+package com.codecool.backend.controller.dto;
+
+public record FilterDTO (String columnName, Object columnValue) {}
