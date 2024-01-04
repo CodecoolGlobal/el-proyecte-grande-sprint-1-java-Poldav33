@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import ActivityList from "../components/activitylist";
+import ActivityList from "../components/exerciselist";
 import NavigationBar from "../components/navigationbar";
 
 const HomePage = () => {

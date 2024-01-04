@@ -1,7 +1,6 @@
-import ExerciseCard from "../activitycard";
+import ExerciseCard from "../exercisecard/index.ts";
 import Activity from "../../type/Activity.ts";
-import {useEffect, useState, SetStateAction} from "react";
-import Activity from "../../type/Activity.ts";
+import {useEffect, useState} from "react";
 
 // @ts-ignore
 const ActivityList = () => {
