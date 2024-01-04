@@ -16,6 +16,10 @@ const ExercisePage = () => {
     const muscle = ["forearms", "quadriceps", "abdominals", "lats"];
     const difficulty = ["beginner", "intermediate"];
 
+    useEffect(() => {
+        fetchData(createFilterDTO());
+    }, [filter]);
+
     const fetchData = async (filters: any) => {
         const response = await fetch("/api/exercises/filter", {
             method: "POST",
@@ -27,19 +31,19 @@ const ExercisePage = () => {
             .then(res => {
                 setExercises(res)
             })
-
     }
 
     const createFilterDTO = () => {
         const filterDTOs = [];
-        for(value: Object.keys(filter)) {
+        for(const value in filter) {
             if (filter[value].length > 0) {
-                {
+                filterDTOs.push({
                     coloumnName: value,
                     coloumnValue: filter[value]
-                }
+                })
             }
         }
+        return filterDTOs;
     }
 
     const onSubmit= (e: any, nameValue: string, typeValue: string, muscleValue: string, difficultyValue: string) => {
@@ -55,7 +59,7 @@ const ExercisePage = () => {
     }
 
     return <>
-    <ExerciseFilter name={name} type={type} muscle={muscle} difficulty={difficulty}/>
+    <ExerciseFilter name={name} type={type} muscle={muscle} difficulty={difficulty} onSubmit={onSubmit}/>
         <ExerciseList exercises={exercises}/>
     </>
 
