@@ -7,9 +7,10 @@ const Nutrition =()=>{
     const [nutrition, setNutrition] = useState([]);
     const [loading, setLoading] = useState(false);
 
-    const getNutrition = async (name: String)=> {
+    const getNutrition = async (event: any)=> {
+        event.preventDefault();
         setLoading(true);
-        const nutrition = await fetch(`/nutrition?name=${name}`)
+        const nutrition = await fetch(`/nutrition?name=${event.target.value}`)
         const  fetchedNutrition = await nutrition.json();
         setNutrition(fetchedNutrition);
         console.log(nutrition)
@@ -17,7 +18,10 @@ const Nutrition =()=>{
     }
     return (
         <div>
-            <input type={"text"} placeholder={"search nutrition..."} onChange={(e)=>getNutrition(e.target.value)}/>
+            <form onSubmit={getNutrition}>
+                <input type={"text"} placeholder={"search nutrition..."}/>
+                <button type="submit">Search</button>
+            </form>
             <div>
                 {loading && !nutrition ?
                     "loading"
