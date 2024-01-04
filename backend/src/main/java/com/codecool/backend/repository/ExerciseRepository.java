@@ -1,10 +1,14 @@
 package com.codecool.backend.repository;
 
-import com.codecool.backend.dao.model.Exercise;
+import com.codecool.backend.controller.dto.ExerciseDTO;
+import com.codecool.backend.model.Exercise;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
-public interface ExerciseRepository extends JpaRepository<Exercise, Long> {
+@Repository
+public interface ExerciseRepository extends JpaRepository<Exercise, Long>, JpaSpecificationExecutor<Exercise> {
     Optional<Exercise> findById(long id);
 }
