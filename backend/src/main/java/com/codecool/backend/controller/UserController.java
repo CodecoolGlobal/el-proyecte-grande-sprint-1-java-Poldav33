@@ -14,28 +14,28 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/users")
 public class UserController {
 
-    private final UserService userService;
+//    private final UserService userService;
+//
+//    public UserController(UserService userService) {
+//        this.userService = userService;
+//    }
+//
+////    @PostMapping("/register")
+////    public ResponseEntity<?> addUser(@RequestBody NewUserDTO newUserDTO) {
+//
+//        if (userService.addUser(newUserDTO).success()) {
+//            return ResponseEntity.ok("New user added to the database.");
+//        } else {
+//            return ResponseEntity.badRequest().body("This user is already exist in the database!");
+//        }
+//    }
 
-    public UserController(UserService userService) {
-        this.userService = userService;
-    }
-
-    @PostMapping("/register")
-    public ResponseEntity<?> addUser(@RequestBody NewUserDTO newUserDTO) {
-
-        if (userService.addUser(newUserDTO).success()) {
-            return ResponseEntity.ok("New user added to the database.");
-        } else {
-            return ResponseEntity.badRequest().body("This user is already exist in the database!");
-        }
-    }
-
-    @PostMapping("/login")
-    public ResponseEntity<?> userIsExistInDatabase (@RequestBody UserDTO userDTO) {
-        if (userService.userExist(userDTO).success()) {
-            return ResponseEntity.ok("Successful login.");
-        } else {
-            return ResponseEntity.badRequest().body("This user is already exist in the database!");
-        }
-    }
+//    @PostMapping("/login")
+//    public ResponseEntity<?> userIsExistInDatabase (@RequestBody UserDTO userDTO) {
+//        if (userService.userExist(userDTO).success()) {
+//            return ResponseEntity.ok("Successful login.");
+//        } else {
+//            return ResponseEntity.badRequest().body("This user is already exist in the database!");
+//        }
+//    }
 }
