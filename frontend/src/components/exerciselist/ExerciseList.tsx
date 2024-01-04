@@ -3,25 +3,15 @@ import Activity from "../../type/Activity.ts";
 import {useEffect, useState} from "react";
 
 // @ts-ignore
-const ActivityList = () => {
-    const [activities, setActivities] = useState<Activity[]>();
-    useEffect(() => {
-        const getActivities = async () => {
-            const promise = await fetch('/api/activities');
-            const activities = await promise.json();
-            setActivities(activities);
-        }
-        getActivities();
-        }, []);
-
+const ExerciseList = (exercises) => {
 
     return (
         <div className={"activity-container"}>
-            {activities.map(
+            {exercises.map(
                 (activity: Activity) => <ExerciseCard activity={activity}/>
             )}
         </div>
     );
 }
 
-export default ActivityList;
+export default ExerciseList;
