@@ -1,5 +1,5 @@
-import LogInUser from "../../type/types.ts";
-import UserLoginForm from "./index.ts";
+import {LogInUser} from "../../type/types.ts";
+import SignInSide from "./UserLoginForm.tsx";
 import {useState} from "react";
 import {useNavigate} from "react-router-dom";
 
@@ -27,7 +27,6 @@ function UserLoginPage() {
             console.log(errorMassage)
         }
 
-        const data: boolean = await response.json();
         if (userIsValid) {
             navigate('/home');
         }
@@ -36,8 +35,8 @@ function UserLoginPage() {
 
     if (!userIsValid) {
         return (
-            <UserLoginForm
-                loginUser={sendUserDatas}/>);
+            <SignInSide
+                 onSave={sendUserDatas}/>);
     } else {
         navigate("/home");
     }

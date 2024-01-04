@@ -1,7 +1,4 @@
 
-
-
-
 export interface RegistrationUser {
     username : string,
     name : string,
@@ -9,16 +6,12 @@ export interface RegistrationUser {
     email : string
 }
 
-<<<<<<< HEAD
 
-
-export default User;
-=======
 export interface LogInUser {
-    name : string,
+    email : string,
     password : string,
 }
 
 
->>>>>>> 94b6f404b356a8e251ad6b21f1e107cad0e4e442
+
 

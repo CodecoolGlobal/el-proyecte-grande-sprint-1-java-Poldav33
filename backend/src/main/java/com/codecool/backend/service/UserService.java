@@ -17,7 +17,7 @@ public class UserService {
     }
 
     public SuccessDTO addUser(NewUserDTO newUserDTO) {
-        if (userRepository.findByUsernameAndPassword(newUserDTO.userName(), newUserDTO.password()).isPresent()) {
+        if (userRepository.findByEmailAndPassword(newUserDTO.email(), newUserDTO.password()).isPresent()) {
             return new SuccessDTO(false);
         }
         userRepository.save(new User(newUserDTO.name(),newUserDTO.userName(),newUserDTO.password(),newUserDTO.email()));
@@ -25,7 +25,7 @@ public class UserService {
     }
 
     public SuccessDTO userExist (UserDTO userDTO) {
-       return new SuccessDTO(userRepository.findByUsernameAndPassword(userDTO.userName(), userDTO.password()).isPresent());
+       return new SuccessDTO(userRepository.findByEmailAndPassword(userDTO.email(), userDTO.password()).isPresent());
     }
 
 }
