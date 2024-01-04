@@ -2,7 +2,10 @@ package com.codecool.backend.repository;
 
 import com.codecool.backend.model.Activity;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.CrudRepository;
 
-public interface ActivityRepository implements JpaRepository<Activity, Long> {
+import java.util.Optional;
 
+public interface ActivityRepository extends JpaRepository<Activity, Long>, CrudRepository<Activity, Long> {
+    Optional<Activity> findById(long id);
 }

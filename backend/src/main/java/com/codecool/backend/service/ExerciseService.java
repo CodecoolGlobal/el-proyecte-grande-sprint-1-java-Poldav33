@@ -1,5 +1,5 @@
 package com.codecool.backend.service;
-import com.codecool.backend.controller.dto.Exercise;
+import com.codecool.backend.controller.dto.ExerciseDTO;
 import com.codecool.backend.repository.ExerciseRepository;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +15,7 @@ public class ExerciseService {
         this.exerciseRepository = exerciseRepository;
     }
 
-    public List<Exercise> getActivities() {
+    public List<ExerciseDTO> getActivities() {
         return null; //exerciseDAO.getExercises();
     }
 }

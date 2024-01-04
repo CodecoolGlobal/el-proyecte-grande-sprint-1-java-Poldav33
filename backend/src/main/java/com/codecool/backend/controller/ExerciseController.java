@@ -1,6 +1,6 @@
 package com.codecool.backend.controller;
 
-import com.codecool.backend.controller.dto.Exercise;
+import com.codecool.backend.controller.dto.ExerciseDTO;
 import com.codecool.backend.service.ExerciseService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,7 +19,7 @@ public class ExerciseController {
     }
 
     @GetMapping("")
-    public List<Exercise> getActivities() {
+    public List<ExerciseDTO> getActivities() {
         return exerciseService.getActivities();
     }
 
