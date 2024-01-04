@@ -1,0 +1,43 @@
+/******** default stuff *************/
+*{
+    box-sizing: border-box;
+}
+body{
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+.page1{
+    width: 100%;
+    height:100vh;
+
+}
+.page2{
+    width: 100%;
+    height:70vh;
+}
+
+
+/****************************** setting semi trans background when scrolled *******************/
+
+.page1{
+    background: url("../images/fitness.jpg") no-repeat center center;     /*responsive bckgrnd img */
+    background-size: cover;
+    background-attachment: fixed;                /* parallex effect 1*/
+}
+
+.page2{
+    background-color: black;
+    opacity: 0.75;
+
+}
+.page2wrapper{
+    background: url("../images/fitness.jpg") no-repeat center center;
+    background-attachment: fixed;
+    background-size: cover;
+}
+.content{
+    color: white;
+    padding:8%;
+}
+
