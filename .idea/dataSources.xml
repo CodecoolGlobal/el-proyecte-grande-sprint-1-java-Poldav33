@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="GitPushup@localhost" uuid="2b9570fd-fe2b-4541-9f12-6d1289d061af">
+    <data-source source="LOCAL" name="calories@localhost" uuid="8e59e4d1-094d-45ed-9692-80228b661ad7">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql://localhost:5432/GitPushup</jdbc-url>
+      <jdbc-url>jdbc:postgresql://localhost:6090/calories</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>

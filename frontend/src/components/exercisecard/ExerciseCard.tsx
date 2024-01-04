@@ -23,6 +23,9 @@ const ExerciseCard = (activity :Activity) => {
                 <Typography variant="body2" color="text.secondary">
                     {activity.muscle}
                 </Typography>
+                <Typography variant="body2" color="text.secondary">
+                    {activity.difficulty}
+                </Typography>
             </CardContent>
             <CardActions>
                 <Button size="small">Share</Button>
