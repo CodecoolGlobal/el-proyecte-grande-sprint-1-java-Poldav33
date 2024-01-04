@@ -8,7 +8,7 @@ import Activity from "../../type/Activity.ts";
 
 
 
-const ExerciseCard = (activity :Activity) => {
+const ExerciseCard = ({activity}: any) => {
     return (
         <Card sx={{ maxWidth: 345 }}>
             <CardMedia
