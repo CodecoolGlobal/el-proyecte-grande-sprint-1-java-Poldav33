@@ -1,42 +1,29 @@
-import {useEffect, useState} from "react";
-import ActivityList from "../components/exerciselist";
-import NavigationBar from "../components/navigationbar";
+import "./HomePage.css"
 
 const HomePage = () => {
-    const [activities, setActivities] = useState([]);
-    const [loading, setLoading] = useState(false);
 
-    useEffect( () => {
-        const getActivities = async () => {
-            setLoading(true);
-            const activityPromise = await fetch("https://api.api-ninjas.com/v1/exercises", {
-                method: "GET",
-                headers: {
-                    "Content-Type": "application/json",
-                    "X-Api-Key" : "xHjiZTRKqj3fhFPOOkekWQ==APN9dMnmhUWEV8Fn"
-                },
-            });
-            const activities = await activityPromise.json();
-            setActivities(activities);
-            console.log(activities[0].name);
-            setLoading(false);
-        }
-        getActivities();
-    }, [])
-
-    console.log("Lefut a homepage");
-
-    // @ts-ignore
     return (
-        <div className={"home-page"}>
-            {loading && !activities ?
-                "loading"
-                :
-                <div className={"exercises-container"}>
-                    <ActivityList activityList={activities}/>
+        <>
+            <div className="page1">
+            </div>
+            <div className="page2wrapper">
+                <div className="page2">
+                    <div className="content">
+                        <h1>Welcome at the Git-Push-Up original gym site!</h1>
+                        <h2>Our missions:</h2>
+                        <p>
+                            We try to help people to be healthier and make the gym fun!</p>
+                        <p>
+                            and pls send some help we are really suffering and spring is  slowly kill
+                            our mental health
+                        </p>
+                        <p>
+                            AAAAAAAAAAAAAAAAAAAAAAAAAAA
+                        </p>
+                    </div>
                 </div>
-            }
-        </div>
-    );
+            </div>
+        </>)
+
 }
 export default HomePage;

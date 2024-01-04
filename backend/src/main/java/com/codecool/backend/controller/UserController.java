@@ -35,7 +35,7 @@ public class UserController {
         if (userService.userExist(userDTO).success()) {
             return ResponseEntity.ok("Successful login.");
         } else {
-            return ResponseEntity.badRequest().body("This user is already exist in the database!");
+            return ResponseEntity.badRequest().body("This user is not exist in the database!");
         }
     }*/
 }
