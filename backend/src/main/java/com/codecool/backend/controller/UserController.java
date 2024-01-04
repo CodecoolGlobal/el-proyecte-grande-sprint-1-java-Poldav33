@@ -20,7 +20,7 @@ public class UserController {
         this.userService = userService;
     }
 
-    @PostMapping("/register")
+    /*@PostMapping("/register")
     public ResponseEntity<?> addUser(@RequestBody NewUserDTO newUserDTO) {
 
         if (userService.addUser(newUserDTO).success()) {
@@ -37,5 +37,5 @@ public class UserController {
         } else {
             return ResponseEntity.badRequest().body("This user is already exist in the database!");
         }
-    }
+    }*/
 }
