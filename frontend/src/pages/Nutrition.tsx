@@ -1,4 +1,7 @@
 import {useState} from "react";
+// @ts-ignore
+import  NutritionList from "../components/nutritionlist";
+
 
 const Nutrition =()=>{
     const [nutrition, setNutrition] = useState([]);
@@ -20,7 +23,7 @@ const Nutrition =()=>{
                     "loading"
                     :
                     <div>
-
+                        <NutritionList nutrition={nutrition}/>
                     </div>
                 }
             </div>
