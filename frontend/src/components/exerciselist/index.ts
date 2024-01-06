@@ -1,3 +1,3 @@
-import ActivityList from "./ExerciseList.js";
+import ExerciseList from "./ExerciseList.js";
 
-export default ActivityList;
+export default ExerciseList;
