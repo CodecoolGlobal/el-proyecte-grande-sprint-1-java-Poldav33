@@ -1,15 +1,15 @@
 package com.codecool.backend.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
+@Table(uniqueConstraints = {@UniqueConstraint(columnNames = {"name"})})
 public class Nutrition {
 
     @Id
     @GeneratedValue
     private Long id;
+    @Column(name = "name")
     private String name;
     private int calories;
     private int fat_total_g;
