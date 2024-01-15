@@ -3,14 +3,13 @@ import ExerciseFilter from "../components/exercise-bar/ExerciseFilter.tsx";
 import ExerciseFilterType from "../type/ExerciseFilterType.ts";
 import ExerciseList from "../components/exerciselist/ExerciseList.tsx";
 
-const ExercisePage = () => {
+const ExercisePage = ({key : string}) => {
     const [filter, setFilter] = useState({
         name: "",
         type: "",
         muscle: "",
         difficulty: ""
     });
-    const [loading, setLoading] = useState(true);
     const [exercises, setExercises] = useState([]);
 
     const name = ["Rickshaw Carry",
@@ -22,37 +21,16 @@ const ExercisePage = () => {
     const difficulty = ["beginner", "intermediate"];
 
     useEffect(() => {
-        fetchData(createFilterDTO());
+        fetchData();
     }, [filter]);
 
-    const fetchData =  (filters: any) => {
-        console.log(filters);
-        const response = fetch("/api/exercises/filter", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(filters)
-        }).then(res => res.json())
+    const fetchData =  () => {
+        const response = fetch(`/api/exercises/filter?
+        name=${filter.name}&type=${filter.type}&muscle=${filter.muscle}&difficulty=${filter.difficulty}`)
+            .then(res => res.json())
             .then(res => {
                 setExercises(res);
             })
-    }
-
-    const createFilterDTO = () => {
-        const filterDTOs = [];
-        for(const value in filter) {
-            if (filter[value].length > 0) {
-                console.log(value)
-                console.log(filter[value])
-                console.log(filter)
-                filterDTOs.push({
-                    columnName: value,
-                    columnValue: filter[value]
-                })
-            }
-        }
-        return filterDTOs;
     }
 
     const onSubmit= (e: any, nameValue: string, typeValue: string, muscleValue: string, difficultyValue: string) => {
