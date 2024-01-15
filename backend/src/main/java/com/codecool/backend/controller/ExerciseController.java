@@ -8,10 +8,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/exercises")
@@ -45,10 +47,10 @@ public class ExerciseController {
         return new FilterDTO("key", "value");
     }
 
-    @PostMapping("filter")
-    public ResponseEntity<List<Exercise>> getFilteredExercises(@RequestBody List<FilterDTO> filterDTOS) {
+    @GetMapping("filter")
+    public ResponseEntity<List<Exercise>> getFilteredExercises(@RequestParam Map<String, String> filters) {
         try {
-            return ResponseEntity.ok().body(exerciseService.getFilteredExercises(filterDTOS));
+            return ResponseEntity.ok().body(exerciseService.getFilteredExercises(createFilterDTOs(filters)));
         } catch (Exception e) {
             System.out.println(e.getMessage());
             logger.error(e.getMessage());
@@ -56,8 +58,14 @@ public class ExerciseController {
         }
     }
 
-    private List<FilterDTO> createFilterDTOs() {
-        return null;
+    private List<FilterDTO> createFilterDTOs(Map<String,String> filterMap) {
+        List<FilterDTO> filterDTOS = new ArrayList<>();
+        for (Map.Entry<String, String> filter : filterMap.entrySet()) {
+            if (!filter.getValue().isEmpty()) {
+                filterDTOS.add(new FilterDTO(filter.getKey(), filter.getValue()));
+            }
+        }
+        return filterDTOS;
     }
 
 }
