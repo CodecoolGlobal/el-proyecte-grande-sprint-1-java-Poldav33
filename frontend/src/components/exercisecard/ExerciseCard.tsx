@@ -18,6 +18,9 @@ const ExerciseCard = ({activity}: any) => {
             />
             <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
+                    {activity.name}
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
                     {activity.type}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
@@ -28,7 +31,6 @@ const ExerciseCard = ({activity}: any) => {
                 </Typography>
             </CardContent>
             <CardActions>
-                <Button size="small">Share</Button>
                 <Button size="small">Learn More</Button>
             </CardActions>
         </Card>
