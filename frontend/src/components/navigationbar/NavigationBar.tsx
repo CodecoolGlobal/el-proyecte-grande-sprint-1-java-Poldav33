@@ -15,7 +15,7 @@ import AdbIcon from '@mui/icons-material/Adb';
 import {useNavigate} from "react-router-dom";
 
 const pages = ['Exercises', 'Training plan', 'Recpies', 'Nutrition values'];
-const navigationRouters = ['/exercises',  '/trainingplan', '/recipes', '/nutritionvalues']
+const navigationRouters = ['/exercise',  '/trainingplan', '/recipes', '/nutritionvalues']
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function NavigationBar() {
