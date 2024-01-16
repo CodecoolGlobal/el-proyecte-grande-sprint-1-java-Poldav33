@@ -21,7 +21,6 @@ public class AuthTokenFilter  extends OncePerRequestFilter {
 
     private static final Logger logger = LoggerFactory.getLogger(AuthEntryPointJwt.class);
     private final JwtUtils jwtUtils;
-
     private final UserDetailsService userDetailsService;
 
     public AuthTokenFilter(JwtUtils jwtUtils, UserDetailsService userDetailsService) {
@@ -53,7 +52,6 @@ public class AuthTokenFilter  extends OncePerRequestFilter {
             filterChain.doFilter(request,response);
         }
 
-        filterChain.doFilter(request,response);
     }
 
     private String parseJwt (HttpServletRequest request) {

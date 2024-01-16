@@ -61,7 +61,7 @@ public class WebSecurityConfiguration {
                 .exceptionHandling(exception -> exception.authenticationEntryPoint(unauthorizedHandler))
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth ->
-                        auth.requestMatchers("user/").permitAll()
+                        auth.requestMatchers("/api/users/**").permitAll()
                                 .requestMatchers("/api/nutrition").permitAll()
                                 .requestMatchers("/api/exercises/**").hasRole("USER")
                                 .requestMatchers("/error").permitAll()

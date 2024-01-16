@@ -25,8 +25,14 @@ const ExercisePage = ({key : string}) => {
     }, [filter]);
 
     const fetchData =  () => {
+        const token = localStorage.getItem("jwt-token");
+        console.log(token);
         const response = fetch(`/api/exercises/filter?
-        name=${filter.name}&type=${filter.type}&muscle=${filter.muscle}&difficulty=${filter.difficulty}`)
+        name=${filter.name}&type=${filter.type}&muscle=${filter.muscle}&difficulty=${filter.difficulty}`, {
+            headers: {
+                "Authorization": "Bearer " + token,
+            }
+            })
             .then(res => res.json())
             .then(res => {
                 setExercises(res);

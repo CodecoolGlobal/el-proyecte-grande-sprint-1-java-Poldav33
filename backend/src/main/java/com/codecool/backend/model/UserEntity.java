@@ -41,7 +41,7 @@ public class UserEntity {
     }
 
     public String getUsername() {
-        return username;
+        return email;
     }
 
     public String getPassword() {
