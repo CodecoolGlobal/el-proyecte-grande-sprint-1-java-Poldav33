@@ -3,7 +3,8 @@ package com.codecool.backend.service;
 import com.codecool.backend.controller.dto.NewUserDTO;
 import com.codecool.backend.controller.dto.SuccessDTO;
 import com.codecool.backend.controller.dto.UserDTO;
-import com.codecool.backend.model.User;
+import com.codecool.backend.model.Role;
+import com.codecool.backend.model.UserEntity;
 import com.codecool.backend.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +21,7 @@ public class UserService {
         if (userRepository.findByEmailAndPassword(newUserDTO.email(), newUserDTO.password()).isPresent()) {
             return new SuccessDTO(false);
         }
-        userRepository.save(new User(newUserDTO.name(),newUserDTO.userName(),newUserDTO.password(),newUserDTO.email()));
+        userRepository.save(new UserEntity(newUserDTO.name(),newUserDTO.userName(),newUserDTO.password(),newUserDTO.email(), Role.ROLE_USER));
         return new SuccessDTO(true);
     }
 

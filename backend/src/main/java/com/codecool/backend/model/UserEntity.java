@@ -6,7 +6,7 @@ import jakarta.persistence.Id;
 
 @Entity(name = "AppUser")
 
-public class User {
+public class UserEntity {
 
     @Id
     @GeneratedValue
@@ -15,15 +15,21 @@ public class User {
     private String username;
     private String password;
     private String email;
+    private Role role;
 
-    public User(String name, String username, String password, String email) {
+    public UserEntity(String name, String username, String password, String email, Role role) {
         this.name = name;
         this.username = username;
         this.password = password;
         this.email = email;
+        this.role = role;
     }
 
-    public User() {
+    public Role getRole() {
+        return role;
+    }
+
+    public UserEntity() {
     }
 
     public String getName() {
