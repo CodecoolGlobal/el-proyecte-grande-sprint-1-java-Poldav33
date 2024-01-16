@@ -1,26 +1,21 @@
-import React, {useState} from "react";
+import {useState} from "react";
 import NutritionList from "../components/nutritionlist";
 import {NutritionType} from "../type/types.ts";
 
 
-
 const Nutrition = () => {
-    const [nutrition , setNutrition] = React.useState<NutritionType[]>([]);
-    const [loading, setLoading] = useState(false);
-
-    const getNutrition = async (nutrition : string) => {
+    const [nutrition, setNutrition] = useState<NutritionType[]>([]);
+    const getNutrition = async (nutrition: string) => {
         const response = await fetch(`/api/nutrition?name=${nutrition}`)
+        if (response.status === 400) {
+            console.log(response.body)
+        }
         const fetchedNutrition = await response.json();
         setNutrition([fetchedNutrition]);
-        console.log(nutrition)
     }
-
-
-
-
     return (
         <div>
-            <NutritionList getNut={getNutrition} nutrition={nutrition} />
+            <NutritionList getNut={getNutrition} nutrition={nutrition}/>
         </div>
     )
 
