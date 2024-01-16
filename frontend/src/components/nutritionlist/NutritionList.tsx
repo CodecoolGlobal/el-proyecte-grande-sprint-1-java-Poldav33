@@ -1,5 +1,6 @@
 import {NutritionType} from "../../type/types.ts";
 import React from "react";
+import BasicCard from "./NutritionCard.tsx";
 
 interface NutritionListProps {
     getNut : (nut : string) => void,
@@ -14,6 +15,7 @@ const NutritionList : React.FC<NutritionListProps> = ({getNut, nutrition}) => {
         getNut(data.get("search") as string)
     }
 
+    // @ts-ignore
     return (
         <div>
             <form onSubmit={handleSubmit}>
@@ -24,15 +26,11 @@ const NutritionList : React.FC<NutritionListProps> = ({getNut, nutrition}) => {
                 {nutrition.length > 0 ? (
                     nutrition.map((nut : NutritionType) => (
                         <>
-                            <p>{nut.name}</p>
-                            <p>{nut.calories}</p>
-                            <p>{nut.fat_total_g}</p>
-                            <p>{nut.carbohydrates_total_g}</p>
-                            <p>{nut.fiber_g}</p>
+                           <BasicCard nutrition={nut}/>
                         </>
                     ))
                 ) : (<>
-                    <p>{"csa"}</p>
+                    <p>{"search for some nutrition!"}</p>
                     </>)}
 
             </div>
