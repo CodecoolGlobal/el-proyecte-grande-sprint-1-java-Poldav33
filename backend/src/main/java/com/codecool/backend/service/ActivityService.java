@@ -26,12 +26,8 @@ public class ActivityService {
         this.userRepository = userRepository;
         this.trainingRepository = trainingRepository;
     }
-
-    public Optional<Activity> findActivityById(Long id) {
-        return activityRepository.findById(id);
-    }
     public void saveActivity(NewActivityDTO newActivityDTO){
-        Optional<User> userOptional = userRepository.findByUserId(newActivityDTO.userId());
+        Optional<User> userOptional = userRepository.findById(newActivityDTO.userId());
         if (userOptional.isPresent()) {
             User user = userOptional.get();
             activityRepository.save(new Activity(
@@ -42,7 +38,7 @@ public class ActivityService {
         }
     }
     public Activity getActivityById(Long id) {
-        Optional<Activity> optionalActivity = activityRepository.findByActivityId(id);
+        Optional<Activity> optionalActivity = activityRepository.findById(id);
         if (optionalActivity.isPresent()) {
             Activity activity = optionalActivity.get();
             return activity;
@@ -50,8 +46,8 @@ public class ActivityService {
         return null;
     }
     public void addTraining(Long trainingId, Long activityId) {
-        Optional<Training> trainingOptional = trainingRepository.findByTrainingId(trainingId);
-        Optional<Activity> activityOptional = activityRepository.findByActivityId(activityId);
+        Optional<Training> trainingOptional = trainingRepository.findById(trainingId);
+        Optional<Activity> activityOptional = activityRepository.findById(activityId);
         if (trainingOptional.isPresent() && activityOptional.isPresent()) {
 
             Training training = trainingOptional.get();
