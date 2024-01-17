@@ -24,4 +24,12 @@ public class ExerciseService {
     public List<Exercise> getFilteredExercises(List<FilterDTO> filterDTOS) {
         return exerciseRepository.findAll(ExerciseSpecification.columnEqual(filterDTOS));
     }
+    public void addExercise(ExerciseDTO exerciseDTO) {
+        exerciseRepository.save(new Exercise(
+                exerciseDTO.name(),
+                exerciseDTO.type(),
+                exerciseDTO.muscle(),
+                exerciseDTO.difficulty()
+        ));
+    }
 }
