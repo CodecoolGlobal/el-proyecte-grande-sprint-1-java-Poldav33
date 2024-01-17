@@ -7,5 +7,5 @@ import java.util.Optional;
 import java.util.Set;
 
 public interface TrainingRepository extends JpaRepository<Training, Long> {
-    Optional<Training> findByTrainingId(Long id);
+    Optional<Training> findById(Long id);
 }
