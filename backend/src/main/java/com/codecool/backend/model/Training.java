@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 public class Training {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long trainingId;
+    private long id;
     @ManyToOne
     @JoinColumn(name = "exercise_id")
     private Exercise exercise;
@@ -27,7 +27,7 @@ public class Training {
     }
 
     public long getTrainingId() {
-        return trainingId;
+        return id;
     }
 
     public Exercise getExercise() {
