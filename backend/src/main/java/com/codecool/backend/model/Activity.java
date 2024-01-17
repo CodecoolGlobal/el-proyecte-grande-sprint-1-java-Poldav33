@@ -12,7 +12,7 @@ import java.util.Set;
 public class Activity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long activityId;
+    private long id;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private User user;
@@ -30,7 +30,7 @@ public class Activity {
     }
 
     public long getActivityId() {
-        return activityId;
+        return id;
     }
 
     public User getUser() {
@@ -49,7 +49,7 @@ public class Activity {
     }
 
     public  String logActivity() {
-        return "Activity_id: " + activityId
+        return "Activity_id: " + id
                 + "\n" +
                 "User_id: " +  user.getId()
                 + "\n" +
