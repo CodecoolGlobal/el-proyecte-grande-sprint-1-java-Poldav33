@@ -59,5 +59,9 @@ public class ExerciseController {
     private List<FilterDTO> createFilterDTOs() {
         return null;
     }
+    @PostMapping("/add")
+    public void addExercise(@RequestBody ExerciseDTO exerciseDTO) {
+        exerciseService.addExercise(exerciseDTO);
+    }
 
 }
