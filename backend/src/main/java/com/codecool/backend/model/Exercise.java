@@ -15,6 +15,16 @@ public class Exercise {
     private String muscle;
     private String difficulty;
 
+    public Exercise() {
+    }
+
+    public Exercise(String name, String type, String muscle, String difficulty) {
+        this.name = name;
+        this.type = type;
+        this.muscle = muscle;
+        this.difficulty = difficulty;
+    }
+
     public long getId() {
         return id;
     }
