@@ -25,8 +25,7 @@ public class TrainingService {
         this.exerciseRepository = exerciseRepository;
     }
     public void saveTraining(TrainingDTO trainingDTO) {
-        Optional<Exercise> optionalExercise = exerciseRepository.
-                                                    findByExerciseId(trainingDTO.exerciseId());
+        Optional<Exercise> optionalExercise = exerciseRepository.findById(trainingDTO.exerciseId());
         optionalExercise.ifPresent(exercise -> trainingRepository
                 .save(new Training(
                         exercise,
