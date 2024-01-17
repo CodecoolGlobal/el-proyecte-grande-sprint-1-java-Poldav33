@@ -40,7 +40,7 @@ export default function SignInSide({onSave} : onSaveProp) {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
         const user : LogInUser = {
-            email : String(data.get('email')),
+            username : String(data.get('username')),
             password : String(data.get('password'))
         }
         return onSave(user)
@@ -85,10 +85,9 @@ export default function SignInSide({onSave} : onSaveProp) {
                                 margin="normal"
                                 required
                                 fullWidth
-                                id="email"
-                                label="Email Address"
-                                name="email"
-                                autoComplete="email"
+                                id="username"
+                                label="Username"
+                                name="username"
                                 autoFocus
                             />
                             <TextField

@@ -6,6 +6,7 @@ import com.codecool.backend.controller.dto.UserDTO;
 import com.codecool.backend.model.Role;
 import com.codecool.backend.model.UserEntity;
 import com.codecool.backend.repository.UserRepository;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -17,16 +18,16 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public SuccessDTO addUser(NewUserDTO newUserDTO) {
-        if (userRepository.findByEmailAndPassword(newUserDTO.email(), newUserDTO.password()).isPresent()) {
+    public SuccessDTO addUser(NewUserDTO newUserDTO, PasswordEncoder passwordEncoder) {
+        if (userRepository.findByUsernameAndPassword(newUserDTO.username(), newUserDTO.password()).isPresent()) {
             return new SuccessDTO(false);
         }
-        userRepository.save(new UserEntity(newUserDTO.name(),newUserDTO.userName(),newUserDTO.password(),newUserDTO.email(), Role.ROLE_USER));
+        userRepository.save(new UserEntity(newUserDTO.username(), passwordEncoder.encode(newUserDTO.password()), newUserDTO.email(), Role.ROLE_USER));
         return new SuccessDTO(true);
     }
 
     public SuccessDTO userExist (UserDTO userDTO) {
-       return new SuccessDTO(userRepository.findByEmailAndPassword(userDTO.email(), userDTO.password()).isPresent());
+       return new SuccessDTO(true);
     }
 
 }
