@@ -7,5 +7,5 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.Optional;
 
 public interface ActivityRepository extends JpaRepository<Activity, Long> {
-    Optional<Activity> findByActivityId(long id);
+    Optional<Activity> findById(long id);
 }
