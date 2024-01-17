@@ -47,13 +47,13 @@ public class ExerciseController {
     }
 
     @GetMapping("filter")
-    public ResponseEntity<List<Exercise>> getFilteredExercises(@RequestParam Map<String, String> filters) {
+    public List<Exercise> getFilteredExercises(@RequestParam Map<String, String> filters) {
         try {
-            return ResponseEntity.ok().body(exerciseService.getFilteredExercises(createFilterDTOs(filters)));
+            return exerciseService.getFilteredExercises(createFilterDTOs(filters));
         } catch (Exception e) {
             System.out.println(e.getMessage());
             logger.error(e.getMessage());
-            return new ResponseEntity<>(HttpStatusCode.valueOf(404));
+            return null;
         }
     }
 
