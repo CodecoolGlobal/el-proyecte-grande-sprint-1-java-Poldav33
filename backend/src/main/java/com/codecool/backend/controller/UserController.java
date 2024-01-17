@@ -1,13 +1,13 @@
 package com.codecool.backend.controller;
 
 import com.codecool.backend.controller.dto.NewUserDTO;
-import com.codecool.backend.controller.dto.SuccessDTO;
 import com.codecool.backend.controller.dto.UserDTO;
 import com.codecool.backend.model.payload.JwtResponse;
 import com.codecool.backend.security.jwt.JwtUtils;
 import com.codecool.backend.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -43,7 +43,7 @@ public class UserController {
     @PostMapping("/register")
     public ResponseEntity<?> addUser(@RequestBody NewUserDTO newUserDTO) {
 
-        if (userService.addUser(newUserDTO).success()) {
+        if (userService.addUser(newUserDTO, passwordEncoder).success()) {
             return ResponseEntity.ok("New user added to the database.");
         } else {
             return ResponseEntity.badRequest().body("This user is already exist in the database!");
@@ -55,7 +55,7 @@ public class UserController {
         if (userService.userExist(userDTO).success()) {
             try {
                 Authentication authentication = authenticationManager
-                        .authenticate(new UsernamePasswordAuthenticationToken(userDTO.email(), userDTO.password()));
+                        .authenticate(new UsernamePasswordAuthenticationToken(userDTO.username(), userDTO.password()));
                 logger.error("after authentication declaration");
                 SecurityContextHolder.getContext().setAuthentication(authentication);
                 logger.error("after securityContextHolder");
@@ -68,7 +68,9 @@ public class UserController {
                         .toList();
                 logger.error("after roles declaration");
 
-                return ResponseEntity.ok(new JwtResponse(jwt, userDetails.getUsername(), roles));
+                return ResponseEntity.ok()
+                        .header(HttpHeaders.AUTHORIZATION,jwt)
+                        .body(new JwtResponse(jwt,userDTO.username(),roles));
             } catch (Exception e) {
                 return ResponseEntity.ok("This is from the catch: " + e.getMessage());
             }
