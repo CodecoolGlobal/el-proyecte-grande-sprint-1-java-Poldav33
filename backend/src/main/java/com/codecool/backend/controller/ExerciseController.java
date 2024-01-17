@@ -47,9 +47,19 @@ public class ExerciseController {
     }
 
     @GetMapping("filter")
-    public List<Exercise> getFilteredExercises(@RequestParam Map<String, String> filters) {
+    public List<ExerciseDTO> getFilteredExercises(@RequestParam Map<String, String> filters) {
         try {
-            return exerciseService.getFilteredExercises(createFilterDTOs(filters));
+            List<Exercise> exercisesFromDB = exerciseService.getFilteredExercises(createFilterDTOs(filters));
+            List<ExerciseDTO> exerciseDTOS = exercisesFromDB.stream()
+                    .map(exercise ->
+                            new ExerciseDTO(
+                                    exercise.getId(),
+                                    exercise.getName(),
+                                    exercise.getType(),
+                                    exercise.getMuscle(),
+                                    exercise.getDifficulty()))
+                    .toList();
+            return exerciseDTOS;
         } catch (Exception e) {
             System.out.println(e.getMessage());
             logger.error(e.getMessage());
