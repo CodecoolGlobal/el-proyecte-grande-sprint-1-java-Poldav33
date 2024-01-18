@@ -45,10 +45,9 @@ export default function SignUp({onSave}: onSaveProp) {
             password: data.get('password'),
         });
         const user : RegistrationUser = {
-            username : String(data.get('firstName')),
-            name : String(data.get('lastName')),
-            password : String(data.get('password')),
-            email : String(data.get('email'))
+            username : String(data.get('username')),
+            email : String(data.get('email')),
+            password : String(data.get('password'))
         }
         return onSave(user)
 
@@ -73,26 +72,14 @@ export default function SignUp({onSave}: onSaveProp) {
                         Sign up
                     </Typography>
                     <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
-                        <Grid container spacing={2}>
-                            <Grid item xs={12} sm={6}>
-                                <TextField
-                                    autoComplete="given-name"
-                                    name="firstName"
-                                    required
-                                    fullWidth
-                                    id="firstName"
-                                    label="First Name"
-                                    autoFocus
-                                />
-                            </Grid>
-                            <Grid item xs={12} sm={6}>
+                        <Grid container spacing={1}>
+                            <Grid item xs={12}>
                                 <TextField
                                     required
                                     fullWidth
-                                    id="lastName"
-                                    label="Last Name"
-                                    name="lastName"
-                                    autoComplete="family-name"
+                                    id="username"
+                                    label="Username"
+                                    name="username"
                                 />
                             </Grid>
                             <Grid item xs={12}>
