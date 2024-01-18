@@ -1,15 +1,19 @@
 import ExerciseCard from "../exercisecard/index.ts";
-import Activity from "../../type/Activity.ts";
-import {useEffect, useState} from "react";
+import Exercise from "../../type/Exercise.ts";
 
-// @ts-ignore
-const ExerciseList = ({exercises}: any) => {
+interface ExerciseListInterface {
+    exercises : Exercise[]
+}
+
+
+
+const ExerciseList = ({exercises}: ExerciseListInterface) => {
     console.log(exercises);
 
     return (
         <div className={"activity-container"}>
             {exercises.length > 0 ? exercises.map(
-                (activity: Activity) => <ExerciseCard activity={activity}/>
+                (activity: Exercise) => <ExerciseCard activity={activity}/>
             ) : ""}
         </div>
     );

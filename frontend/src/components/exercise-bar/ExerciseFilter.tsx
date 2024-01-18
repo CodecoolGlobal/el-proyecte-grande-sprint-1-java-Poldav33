@@ -1,7 +1,16 @@
 import ExerciseSelectButton from "../exercise-select-button";
-import {useState} from "react";
+import React, {useState} from "react";
 
-const exerciseFilter = ({name, type, muscle, difficulty, onSubmit}: any) => {
+
+interface ExerciseFilterInterface {
+    name : string[],
+    type : string[],
+    muscle :string[],
+    difficulty : string[],
+    onSubmit : (e : React.FormEvent<HTMLFormElement>,nameValue : string, typeValue : string,
+                muscleValue : string, difficultyValue : string) => void
+}
+const ExerciseFilter = ({name, type, muscle, difficulty, onSubmit}: ExerciseFilterInterface) => {
 
     const [nameValue, setNameValue] = useState("");
     const [typeValue, setTypeValue] = useState("");
@@ -37,4 +46,4 @@ const exerciseFilter = ({name, type, muscle, difficulty, onSubmit}: any) => {
 
 }
 
-export default exerciseFilter;
+export default ExerciseFilter;

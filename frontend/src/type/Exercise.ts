@@ -1,4 +1,4 @@
-interface Activity {
+interface Exercise {
     id: number;
     name: string;
     difficulty: string;
@@ -6,4 +6,4 @@ interface Activity {
     muscle: string;
 }
 
-export default Activity;
+export default Exercise;
