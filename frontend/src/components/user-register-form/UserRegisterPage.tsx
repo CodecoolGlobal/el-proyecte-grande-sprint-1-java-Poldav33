@@ -10,23 +10,20 @@ function userNameAndPasswordIsValid(username: string, password: string): boolean
 
 function UserRegisterPage() {
     const navigate = useNavigate()
-    const [userRegistered, setUserRegistered] = useState(false);
     const [errorMassage, setErrorMassage] = useState(String);
 
     async function sendUserDatas(user: RegistrationUser) {
         const response = await fetch("/api/users/register", {
-
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify(user)
-
-        }).then((res) => res.json());
+        })
 
         if (userNameAndPasswordIsValid(user.username, user.password)) {
-            if (response.ok) {
-                setUserRegistered(true)
+            if (response.status === 200) {
+                navigate("/login")
             } else if (response.status === 400) {
                 setErrorMassage(await response.text())
             }
@@ -34,16 +31,13 @@ function UserRegisterPage() {
         }
     }
 
-
-    if (!userRegistered) {
         return (
             <SingUp
                 onSave={sendUserDatas}
             />
         )
-    } else {
-        navigate("/login")
-    }
+
+
 
 
 }

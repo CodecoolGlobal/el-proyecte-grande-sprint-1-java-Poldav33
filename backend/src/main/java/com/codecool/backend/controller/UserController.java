@@ -8,6 +8,7 @@ import com.codecool.backend.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -42,9 +43,10 @@ public class UserController {
 
     @PostMapping("/register")
     public ResponseEntity<?> addUser(@RequestBody NewUserDTO newUserDTO) {
+        NewUserDTO userEncodedPass = new NewUserDTO(newUserDTO.username(), passwordEncoder.encode(newUserDTO.password()), newUserDTO.email());
 
-        if (userService.addUser(newUserDTO, passwordEncoder).success()) {
-            return ResponseEntity.ok("New user added to the database.");
+        if (userService.addUser(userEncodedPass).success()) {
+            return ResponseEntity.status(HttpStatusCode.valueOf(200)).body("New user added to the database.");
         } else {
             return ResponseEntity.badRequest().body("This user is already exist in the database!");
         }

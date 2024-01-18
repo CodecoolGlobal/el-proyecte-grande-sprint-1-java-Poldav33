@@ -18,7 +18,7 @@ const NutritionList : React.FC<NutritionListProps> = ({getNut, nutrition}) => {
 
 
 
-    // @ts-ignore
+
     return (
         <div className={"parent"}>
             <form onSubmit={handleSubmit}>

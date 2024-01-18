@@ -19,12 +19,12 @@ interface onSaveProp {
     onSave : (user : LogInUser) => void
 }
 
-function Copyright(props: any) {
+function Copyright() {
     return (
-        <Typography variant="body2" color="text.secondary" align="center" {...props}>
+        <Typography variant="body2" color="text.secondary" align="center" >
             {'Copyright © '}
             <Link color="inherit" href="https://mui.com/">
-                Your Website
+                Git-Push-Up
             </Link>{' '}
             {new Date().getFullYear()}
             {'.'}
@@ -120,13 +120,13 @@ export default function SignInSide({onSave} : onSaveProp) {
                                 </Grid>
                                 <Grid item>
                                     <Link variant="body2" onClick={() => {
-                                        navigate("/login")
+                                        navigate("/registration")
                                     }}>
                                         {"Don't have an account? Sign Up"}
                                     </Link>
                                 </Grid>
                             </Grid>
-                            <Copyright sx={{ mt: 5 }} />
+                            <Copyright />
                         </Box>
                     </Box>
                 </Grid>

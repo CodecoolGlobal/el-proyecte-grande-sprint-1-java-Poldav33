@@ -4,8 +4,13 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import Exercise from "../../type/Exercise.ts";
 
-const ExerciseCard = ({activity}: any) => {
+interface ExerciseCardInterface {
+    activity : Exercise
+}
+
+const ExerciseCard = ({activity}: ExerciseCardInterface) => {
     return (
         <Card sx={{ maxWidth: 345 }}>
             <CardMedia
