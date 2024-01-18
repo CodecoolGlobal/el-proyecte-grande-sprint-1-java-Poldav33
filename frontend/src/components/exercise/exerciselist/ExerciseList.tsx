@@ -1,9 +1,13 @@
 import ExerciseCard from "../exercisecard";
 import Activity from "../../../type/Activity.ts";
 import Box from "@mui/material/Box";
+import Exercise from "../../../type/Exercise.ts";
 
-// @ts-ignore
-const ExerciseList = ({exercises}: any) => {
+interface ExerciseListInterface {
+    exercises : Exercise[]
+}
+
+const ExerciseList = ({exercises}: ExerciseListInterface) => {
     console.log(exercises);
 
     return (

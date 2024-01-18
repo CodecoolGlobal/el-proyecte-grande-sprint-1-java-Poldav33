@@ -1,9 +1,6 @@
 import React, {useState, useEffect} from "react";
-import ExerciseFilter from "../components/exercise-bar/ExerciseFilter.tsx";
-import {useState, useEffect} from "react";
 import ExerciseFilter from "../components/exercise/exercise-bar/ExerciseFilter.tsx";
 import ExerciseFilterType from "../type/ExerciseFilterType.ts";
-import ExerciseList from "../components/exerciselist/ExerciseList.tsx";
 import Exercise from "../type/Exercise.ts";
 import ExerciseList from "../components/exercise/exerciselist/ExerciseList.tsx";
 
