@@ -3,7 +3,7 @@ import ExerciseFilter from "../components/exercise-bar/ExerciseFilter.tsx";
 import ExerciseFilterType from "../type/ExerciseFilterType.ts";
 import ExerciseList from "../components/exerciselist/ExerciseList.tsx";
 
-const ExercisePage = ({key : string}) => {
+const ExercisePage = () => {
     const [filter, setFilter] = useState({
         name: "",
         type: "",

@@ -31,7 +31,7 @@ const router = createBrowserRouter([
                 element : <Nutrition/>
             },
             {
-                path:"/exercise",
+                path:"/exercises",
                 element: <ExercisePage/>
             }
         ],
