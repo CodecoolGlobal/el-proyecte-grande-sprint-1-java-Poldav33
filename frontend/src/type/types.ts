@@ -1,14 +1,13 @@
 
 export interface RegistrationUser {
     username : string,
-    name : string,
-    password : string,
-    email : string
+    email : string,
+    password : string
 }
 
 
 export interface LogInUser {
-    email : string,
+    username : string,
     password : string,
 }
 
