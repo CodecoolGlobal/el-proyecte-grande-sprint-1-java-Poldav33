@@ -4,9 +4,11 @@ package com.codecool.backend.model;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.Getter;
 
 import java.util.Objects;
 
+@Getter
 @Entity
 @Table(name="exercises")
 public class Exercise {
@@ -28,6 +30,8 @@ public class Exercise {
     @Override
     public int hashCode() {
         return Objects.hash(id);
+    }
+
     public Exercise() {
     }
 
@@ -36,26 +40,6 @@ public class Exercise {
         this.type = type;
         this.muscle = muscle;
         this.difficulty = difficulty;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public String getMuscle() {
-        return muscle;
-    }
-
-    public String getDifficulty() {
-        return difficulty;
     }
 
 }
