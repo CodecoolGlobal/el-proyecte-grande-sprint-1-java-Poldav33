@@ -3,9 +3,10 @@ package com.codecool.backend.model;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import lombok.Getter;
 
 @Entity(name = "AppUser")
-
+@Getter
 public class UserEntity {
 
     @Id
@@ -24,28 +25,9 @@ public class UserEntity {
         this.role = role;
     }
 
-    public Role getRole() {
-        return role;
-    }
-
     public UserEntity() {
     }
 
 
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public String getEmail() {
-        return email;
-    }
 }
+
