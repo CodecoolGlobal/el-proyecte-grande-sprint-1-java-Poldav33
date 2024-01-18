@@ -4,11 +4,8 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import Activity from "../../type/Activity.ts";
 
-
-
-const ExerciseCard = (activity :Activity) => {
+const ExerciseCard = ({activity}: any) => {
     return (
         <Card sx={{ maxWidth: 345 }}>
             <CardMedia
@@ -18,6 +15,9 @@ const ExerciseCard = (activity :Activity) => {
             />
             <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
+                    {activity.name}
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
                     {activity.type}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
@@ -28,7 +28,6 @@ const ExerciseCard = (activity :Activity) => {
                 </Typography>
             </CardContent>
             <CardActions>
-                <Button size="small">Share</Button>
                 <Button size="small">Learn More</Button>
             </CardActions>
         </Card>

@@ -19,8 +19,12 @@ function UserLoginPage() {
                 },
                 body: JSON.stringify(user)
             })
+        const authorizationHeader = response.headers.get('Authorization');
+        console.log(authorizationHeader)
 
         if (response.ok) {
+            localStorage.setItem("jwt-token", authorizationHeader)
+            console.log(localStorage.getItem("jwt-token"))
             setUserIsValid(true);
         } else if (response.status === 400) {
             setErrorMassage(await response.text())

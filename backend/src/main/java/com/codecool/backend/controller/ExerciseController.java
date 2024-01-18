@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/exercises")
@@ -45,19 +46,35 @@ public class ExerciseController {
         return new FilterDTO("key", "value");
     }
 
-    @PostMapping("filter")
-    public ResponseEntity<List<Exercise>> getFilteredExercises(@RequestBody List<FilterDTO> filterDTOS) {
+    @GetMapping("filter")
+    public List<ExerciseDTO> getFilteredExercises(@RequestParam Map<String, String> filters) {
         try {
-            return ResponseEntity.ok().body(exerciseService.getFilteredExercises(filterDTOS));
+            List<Exercise> exercisesFromDB = exerciseService.getFilteredExercises(createFilterDTOs(filters));
+            List<ExerciseDTO> exerciseDTOS = exercisesFromDB.stream()
+                    .map(exercise ->
+                            new ExerciseDTO(
+                                    exercise.getId(),
+                                    exercise.getName(),
+                                    exercise.getType(),
+                                    exercise.getMuscle(),
+                                    exercise.getDifficulty()))
+                    .toList();
+            return exerciseDTOS;
         } catch (Exception e) {
             System.out.println(e.getMessage());
             logger.error(e.getMessage());
-            return new ResponseEntity<>(HttpStatusCode.valueOf(404));
+            return null;
         }
     }
 
-    private List<FilterDTO> createFilterDTOs() {
-        return null;
+    private List<FilterDTO> createFilterDTOs(Map<String,String> filterMap) {
+        List<FilterDTO> filterDTOS = new ArrayList<>();
+        for (Map.Entry<String, String> filter : filterMap.entrySet()) {
+            if (!filter.getValue().isEmpty()) {
+                filterDTOS.add(new FilterDTO(filter.getKey(), filter.getValue()));
+            }
+        }
+        return filterDTOS;
     }
     @PostMapping("/add")
     public void addExercise(@RequestBody ExerciseDTO exerciseDTO) {
