@@ -63,6 +63,7 @@ public class WebSecurityConfiguration {
                 .authorizeHttpRequests(auth ->
                         auth.requestMatchers("/api/users/**").permitAll()
                                 .requestMatchers("/api/nutrition").permitAll()
+                                .requestMatchers("/api/nutritions").permitAll()
                                 .requestMatchers("/api/exercises/**").authenticated()
                                 .requestMatchers("/error").permitAll()
                                 .anyRequest().authenticated()
