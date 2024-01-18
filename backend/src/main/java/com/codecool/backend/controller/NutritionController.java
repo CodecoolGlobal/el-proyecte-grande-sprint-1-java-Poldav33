@@ -2,7 +2,6 @@ package com.codecool.backend.controller;
 
 import com.codecool.backend.controller.dto.NutritionDTO;
 import com.codecool.backend.service.NutritionService;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,12 +20,16 @@ public class NutritionController {
         this.nutritionService = nutritionService;
     }
     @GetMapping("/nutrition")
-    public ResponseEntity<?> getNutrition(@RequestParam String name){
-        NutritionDTO fetchedNutrition = nutritionService.filterNutrition(name);
-        if (fetchedNutrition != null) {
-            return ResponseEntity.ok().body(fetchedNutrition);
+    public ResponseEntity<List<NutritionDTO>> getNutrition(@RequestParam String name){
+        if (name.isEmpty()) {
+            return ResponseEntity.ok(nutritionService.getBasicNutritions());
         }
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("This nutrition doesnt exist!");
+        return ResponseEntity.ok(nutritionService.filterNutrition(name));
+    }
+
+    @GetMapping("/nutritions")
+    public List<NutritionDTO> getBasicNutritions () {
+      return   nutritionService.getBasicNutritions();
     }
 
 }
