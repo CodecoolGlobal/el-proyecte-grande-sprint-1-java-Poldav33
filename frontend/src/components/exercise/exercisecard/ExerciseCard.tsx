@@ -7,12 +7,15 @@ import Typography from '@mui/material/Typography';
 
 const ExerciseCard = ({activity}: any) => {
     return (
-        <Card sx={{ maxWidth: 345 }}>
-            <CardMedia
-                sx={{ height: 140 }}
-                image="/static/images/cards/contemplative-reptile.jpg"
-                title= {activity.name}
-            />
+        <Card
+              sx={{
+                  width: 345,
+                  mt: '0.5rem',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  border: '0.2rem solid #42a5F5'
+              }}>
             <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
                     {activity.name}

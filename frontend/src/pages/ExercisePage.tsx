@@ -1,7 +1,7 @@
 import {useState, useEffect} from "react";
-import ExerciseFilter from "../components/exercise-bar/ExerciseFilter.tsx";
+import ExerciseFilter from "../components/exercise/exercise-bar/ExerciseFilter.tsx";
 import ExerciseFilterType from "../type/ExerciseFilterType.ts";
-import ExerciseList from "../components/exerciselist/ExerciseList.tsx";
+import ExerciseList from "../components/exercise/exerciselist/ExerciseList.tsx";
 
 const ExercisePage = () => {
     const [filter, setFilter] = useState({

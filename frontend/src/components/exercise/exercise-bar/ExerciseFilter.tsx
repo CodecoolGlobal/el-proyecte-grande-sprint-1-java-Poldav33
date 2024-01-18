@@ -1,5 +1,6 @@
 import ExerciseSelectButton from "../exercise-select-button";
 import {useState} from "react";
+import Button from "@mui/material/Button";
 
 const exerciseFilter = ({name, type, muscle, difficulty, onSubmit}: any) => {
 
@@ -31,7 +32,7 @@ const exerciseFilter = ({name, type, muscle, difficulty, onSubmit}: any) => {
             <ExerciseSelectButton label={"type"} value={typeValue} values={type} onChange={onChange} />
             <ExerciseSelectButton label={"muscle"} value={muscleValue} values={muscle} onChange={onChange} />
             <ExerciseSelectButton label={"difficulty"} value={difficultyValue} values={difficulty} onChange={onChange} />
-            <button type={"submit"}>Search</button>
+            <Button type={"submit"}>Search</Button>
         </form>
     </>
 
