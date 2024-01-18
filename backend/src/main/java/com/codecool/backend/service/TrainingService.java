@@ -1,7 +1,6 @@
 package com.codecool.backend.service;
 
 import com.codecool.backend.controller.dto.TrainingDTO;
-import com.codecool.backend.model.Activity;
 import com.codecool.backend.model.Exercise;
 import com.codecool.backend.model.Training;
 import com.codecool.backend.repository.ActivityRepository;
@@ -9,9 +8,7 @@ import com.codecool.backend.repository.ExerciseRepository;
 import com.codecool.backend.repository.TrainingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.Optional;
-import java.util.Set;
 
 @Service
 public class TrainingService {
