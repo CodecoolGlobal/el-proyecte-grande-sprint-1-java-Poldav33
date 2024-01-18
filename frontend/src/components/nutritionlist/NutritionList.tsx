@@ -26,15 +26,13 @@ const NutritionList : React.FC<NutritionListProps> = ({getNut, nutrition}) => {
                 <button type={"submit"}>search</button>
             </form>
             <div className={"container"}>
-                {nutrition.length > 0 ? (
-                    nutrition.map((nut : NutritionType) => (
-                        <>
-                           <BasicCard nutrition={nut}/>
-                        </>
-                    ))
-                ) : (<>
-                    <p>{"search for some nutrition!"}</p>
-                    </>)}
+
+                {nutrition.map((nut: NutritionType) => (
+                    <div key={nut.name}>
+                        <BasicCard  nutrition={nut}/>
+                    </div>
+                ))}
+
 
             </div>
         </div>
