@@ -76,5 +76,9 @@ public class ExerciseController {
         }
         return filterDTOS;
     }
+    @PostMapping("/add")
+    public void addExercise(@RequestBody ExerciseDTO exerciseDTO) {
+        exerciseService.addExercise(exerciseDTO);
+    }
 
 }

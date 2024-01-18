@@ -28,6 +28,14 @@ public class Exercise {
     @Override
     public int hashCode() {
         return Objects.hash(id);
+    public Exercise() {
+    }
+
+    public Exercise(String name, String type, String muscle, String difficulty) {
+        this.name = name;
+        this.type = type;
+        this.muscle = muscle;
+        this.difficulty = difficulty;
     }
 
     public long getId() {
