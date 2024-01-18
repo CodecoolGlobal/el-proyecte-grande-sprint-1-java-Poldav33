@@ -1,6 +1,7 @@
 import {NutritionType} from "../../type/types.ts";
 import React from "react";
 import BasicCard from "./NutritionCard.tsx";
+import "./NutritionList.css";
 
 interface NutritionListProps {
     getNut : (nut : string) => void,
@@ -15,14 +16,16 @@ const NutritionList : React.FC<NutritionListProps> = ({getNut, nutrition}) => {
         getNut(data.get("search") as string)
     }
 
+
+
     // @ts-ignore
     return (
-        <div>
+        <div className={"parent"}>
             <form onSubmit={handleSubmit}>
                 <input name={"search"} type={"search"}></input>
                 <button type={"submit"}>search</button>
             </form>
-            <div>
+            <div className={"container"}>
                 {nutrition.length > 0 ? (
                     nutrition.map((nut : NutritionType) => (
                         <>

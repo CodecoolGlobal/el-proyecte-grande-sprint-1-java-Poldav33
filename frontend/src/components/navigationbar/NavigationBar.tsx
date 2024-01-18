@@ -14,8 +14,9 @@ import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import {useNavigate} from "react-router-dom";
 
-const pages = ['Exercises', 'Training plan', 'Recpies', 'Nutrition values'];
-const navigationRouters = ['/exercise',  '/trainingplan', '/recipes', '/nutritionvalues']
+
+const pages = ['Exercises', 'Training plan', 'Recpies', 'Nutritions'];
+const navigationRouters = ['/exercises',  '/trainingplan', '/recipes', '/nutrition']
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function NavigationBar() {
