@@ -8,6 +8,7 @@ import UserRegisterPage from "./components/user-register-form/UserRegisterPage.t
 import UserLoginPage from "./components/userloginform/UserLoginPage.tsx";
 import Nutrition from "./pages/Nutrition.tsx";
 import ExercisePage from "./pages/ExercisePage.tsx";
+import NewActivityPage from "./pages/NewActivityPage.tsx";
 
 const router = createBrowserRouter([
     {
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
             {
                 path:"/exercise",
                 element: <ExercisePage/>
+            },
+            {
+                path: "/newactivity",
+                element: <NewActivityPage/>
             }
         ],
     },
