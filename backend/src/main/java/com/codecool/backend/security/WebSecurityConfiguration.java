@@ -66,7 +66,6 @@ public class WebSecurityConfiguration {
                                 .requestMatchers("/api/exercises/**").authenticated()
                                 .requestMatchers("/error").permitAll()
                                 .anyRequest().authenticated()
-
                 );
 
         http.authenticationProvider(authenticationProvider());

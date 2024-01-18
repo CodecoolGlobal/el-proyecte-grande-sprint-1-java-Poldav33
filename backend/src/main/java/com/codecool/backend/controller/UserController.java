@@ -56,17 +56,15 @@ public class UserController {
             try {
                 Authentication authentication = authenticationManager
                         .authenticate(new UsernamePasswordAuthenticationToken(userDTO.username(), userDTO.password()));
-                logger.error("after authentication declaration");
+
                 SecurityContextHolder.getContext().setAuthentication(authentication);
-                logger.error("after securityContextHolder");
+
                 String jwt = jwtUtils.generateJwtToken(authentication);
-                logger.error("after jwt declaration");
 
                 User userDetails = (User) authentication.getPrincipal();
-                logger.error("after userDetails declaration");
+
                 List<String> roles = userDetails.getAuthorities().stream().map(GrantedAuthority::getAuthority)
                         .toList();
-                logger.error("after roles declaration");
 
                 return ResponseEntity.ok()
                         .header(HttpHeaders.AUTHORIZATION,jwt)
