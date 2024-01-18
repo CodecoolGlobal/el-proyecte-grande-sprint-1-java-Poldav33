@@ -1,6 +1,10 @@
+import React, {useState, useEffect} from "react";
+import ExerciseFilter from "../components/exercise-bar/ExerciseFilter.tsx";
 import {useState, useEffect} from "react";
 import ExerciseFilter from "../components/exercise/exercise-bar/ExerciseFilter.tsx";
 import ExerciseFilterType from "../type/ExerciseFilterType.ts";
+import ExerciseList from "../components/exerciselist/ExerciseList.tsx";
+import Exercise from "../type/Exercise.ts";
 import ExerciseList from "../components/exercise/exerciselist/ExerciseList.tsx";
 
 const ExercisePage = () => {
@@ -10,7 +14,7 @@ const ExercisePage = () => {
         muscle: "",
         difficulty: ""
     });
-    const [exercises, setExercises] = useState([]);
+    const [exercises, setExercises] = useState<Exercise[]>([]);
 
     const name = ["Rickshaw Carry",
     "Single-Leg Press",
@@ -34,12 +38,12 @@ const ExercisePage = () => {
             })
             .then(res => res.json())
             .then((res) => {
-                console.log(res)
+                console.log(response)
                 setExercises(res);
             })
     }
 
-    const onSubmit= (e: any, nameValue: string, typeValue: string, muscleValue: string, difficultyValue: string) => {
+    const onSubmit= (e: React.FormEvent<HTMLFormElement>, nameValue: string, typeValue: string, muscleValue: string, difficultyValue: string) => {
         e.preventDefault()
         const filterData: ExerciseFilterType = {
             name: nameValue,

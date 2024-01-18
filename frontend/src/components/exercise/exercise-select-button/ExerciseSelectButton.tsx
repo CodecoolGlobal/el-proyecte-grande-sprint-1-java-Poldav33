@@ -3,9 +3,16 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 
-const ExerciseSelectButton = ({label, value, values, onChange}: any) => {
+interface ExerciseSelectButtonInterface {
+  label : string,
+  value : string
+  values :  string[],
+  onChange : (value: string, label: string) => void;
+}
 
-  const handleChange = (event: any) => {
+const ExerciseSelectButton = ({label, value, values, onChange}: ExerciseSelectButtonInterface) => {
+
+  const handleChange = (event: SelectChangeEvent) => {
     event.preventDefault();
     onChange(event.target.value, label);
   };
