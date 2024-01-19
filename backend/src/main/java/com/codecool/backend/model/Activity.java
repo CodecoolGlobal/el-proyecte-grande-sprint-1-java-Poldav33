@@ -15,7 +15,7 @@ public class Activity {
     private long id;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
-    private User user;
+    private UserEntity user;
     private String date;
     private String description;
     @OneToMany(mappedBy = "activity")
@@ -23,7 +23,7 @@ public class Activity {
     public Activity() {
     }
 
-    public Activity(User user, String date, String description) {
+    public Activity(UserEntity user, String date, String description) {
         this.user = user;
         this.date = date;
         this.description = description;
@@ -33,7 +33,7 @@ public class Activity {
         return id;
     }
 
-    public User getUser() {
+    public UserEntity getUser() {
         return user;
     }
 
