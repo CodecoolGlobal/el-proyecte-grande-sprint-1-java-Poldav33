@@ -19,8 +19,8 @@ interface Setting {
     path: string
 }
 
-const pages = ['Exercises', 'Training plan', 'Recpies', 'Nutrition values', 'New Activity'];
-const navigationRouters = ['/exercise',  '/trainingplan', '/recipes', '/nutritionvalues', '/newactivity']
+const pages = ['Recipes', 'Nutrition values', 'Exercises', 'New Activity', 'Training plan'];
+const navigationRouters = ['/recipes', '/nutrition', '/exercise', '/newactivity', '/trainingplan']
 const settings: Setting[] = [{
     name: "Registration",
     path: "/registration"
