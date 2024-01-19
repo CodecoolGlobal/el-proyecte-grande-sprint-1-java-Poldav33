@@ -25,6 +25,13 @@ public class Training {
         this.amount = amount;
         this.duration = duration;
     }
+    public Training(Exercise exercise, int repeats, long amount, long duration, Activity activity) {
+        this.exercise = exercise;
+        this.repeats = repeats;
+        this.amount = amount;
+        this.duration = duration;
+        this.activity = activity;
+    }
 
     public long getTrainingId() {
         return id;
