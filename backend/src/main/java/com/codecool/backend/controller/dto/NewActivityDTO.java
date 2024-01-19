@@ -1,4 +1,4 @@
 package com.codecool.backend.controller.dto;
 
-public record NewActivityDTO(Long userId, String date, String description) {
+public record NewActivityDTO(Long userId, String date, String description, TrainingDTO[] trainingsDTO) {
 }
