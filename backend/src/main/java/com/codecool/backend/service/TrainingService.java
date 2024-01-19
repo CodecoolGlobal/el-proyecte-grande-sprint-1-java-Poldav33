@@ -22,7 +22,7 @@ public class TrainingService {
         this.exerciseRepository = exerciseRepository;
     }
     public void saveTraining(TrainingDTO trainingDTO) {
-        Optional<Exercise> optionalExercise = exerciseRepository.findById(trainingDTO.exerciseId());
+        Optional<Exercise> optionalExercise = exerciseRepository.findByName(trainingDTO.exerciseName());
         optionalExercise.ifPresent(exercise -> trainingRepository
                 .save(new Training(
                         exercise,
