@@ -30,6 +30,7 @@ function NavigationBar() {
     const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorElUser(event.currentTarget);
     };
+    
     const handleCloseNavMenu = (page : string) => {
         navigate(navigationRouters[pages.indexOf(page)]);
         setAnchorElNav(null);
