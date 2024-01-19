@@ -36,9 +36,13 @@ INSERT INTO users (name, username, password, email)
 VALUES ('Geri', 'gerike', 'ekireg', 'geri@geri.geri'),
        ('Dávid', 'polgi', 'iglop', 'polgi@iglop.polgi');
 
-INSERT INTO exercises (name, type, muscle, difficulty)
+INSERT INTO exercises (id,name, type, muscle, difficulty)
 VALUES
-    ('Rickshaw Carry', 'strongman', 'forearms', 'beginner'),
-    ('Single-Leg Press', 'strength', 'quadriceps', 'intermediate'),
-    ('Landmine twist', 'strength', 'abdominals', 'intermediate'),
-    ('Weighted pull-up', 'strength', 'lats', 'intermediate');
+    (0,'Rickshaw Carry', 'strongman', 'forearms', 'beginner'),
+    (1,'Single-Leg Press', 'strength', 'quadriceps', 'intermediate'),
+    (2,'Landmine twist', 'strength', 'abdominals', 'intermediate'),
+    (3,'Weighted pull-up', 'strength', 'lats', 'intermediate');
+
+INSERT INTO app_user(role, id,email,password,username)
+VALUES
+(0,1,'polg@gmail.com','asdasd','Polgi');
