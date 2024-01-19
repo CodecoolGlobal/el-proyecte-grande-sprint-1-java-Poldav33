@@ -14,9 +14,21 @@ import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import {useNavigate} from "react-router-dom";
 
+interface Setting {
+    name: string,
+    path: string
+}
+
 const pages = ['Exercises', 'Training plan', 'Recpies', 'Nutrition values', 'New Activity'];
 const navigationRouters = ['/exercise',  '/trainingplan', '/recipes', '/nutritionvalues', '/newactivity']
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const settings: Setting[] = [{
+    name: "Registration",
+    path: "/registration"
+},
+    {
+        name: "Login",
+        path: "/login"
+    }];
 
 function NavigationBar() {
     const navigate = useNavigate();
@@ -152,8 +164,11 @@ function NavigationBar() {
                             onClose={handleCloseUserMenu}
                         >
                             {settings.map((setting) => (
-                                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                                    <Typography textAlign="center">{setting}</Typography>
+                                <MenuItem key={setting.name} onClick={handleCloseUserMenu}>
+                                    <Typography
+                                        textAlign="center"
+                                        onClick={() => navigate(setting.path)}
+                                    >{setting.name}</Typography>
                                 </MenuItem>
                             ))}
                         </Menu>
