@@ -12,8 +12,8 @@ interface BasicCardInterface {
 
  const BasicCard : React.FC<BasicCardInterface> =({nutrition}) => {
     return (
-        <Card sx={{ maxWidth: 275}} >
-            <CardContent>
+        <Card  sx={{ maxWidth: 275}} >
+            <CardContent >
                 <Typography variant="h5" component="div">
                     {nutrition.name}
                 </Typography>

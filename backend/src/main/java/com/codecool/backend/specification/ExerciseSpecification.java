@@ -20,7 +20,7 @@ public class ExerciseSpecification {
                 predicates.add(predicate);
             });
 
-            return criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()]));
+            return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
         };
     }
 }

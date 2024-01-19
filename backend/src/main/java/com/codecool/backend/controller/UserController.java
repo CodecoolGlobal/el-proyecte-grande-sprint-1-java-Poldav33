@@ -8,6 +8,7 @@ import com.codecool.backend.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -42,9 +43,10 @@ public class UserController {
 
     @PostMapping("/register")
     public ResponseEntity<?> addUser(@RequestBody NewUserDTO newUserDTO) {
+        NewUserDTO userEncodedPass = new NewUserDTO(newUserDTO.username(), passwordEncoder.encode(newUserDTO.password()), newUserDTO.email());
 
-        if (userService.addUser(newUserDTO, passwordEncoder).success()) {
-            return ResponseEntity.ok("New user added to the database.");
+        if (userService.addUser(userEncodedPass).success()) {
+            return ResponseEntity.status(HttpStatusCode.valueOf(200)).body("New user added to the database.");
         } else {
             return ResponseEntity.badRequest().body("This user is already exist in the database!");
         }
@@ -56,17 +58,15 @@ public class UserController {
             try {
                 Authentication authentication = authenticationManager
                         .authenticate(new UsernamePasswordAuthenticationToken(userDTO.username(), userDTO.password()));
-                logger.error("after authentication declaration");
+
                 SecurityContextHolder.getContext().setAuthentication(authentication);
-                logger.error("after securityContextHolder");
+
                 String jwt = jwtUtils.generateJwtToken(authentication);
-                logger.error("after jwt declaration");
 
                 User userDetails = (User) authentication.getPrincipal();
-                logger.error("after userDetails declaration");
+
                 List<String> roles = userDetails.getAuthorities().stream().map(GrantedAuthority::getAuthority)
                         .toList();
-                logger.error("after roles declaration");
 
                 return ResponseEntity.ok()
                         .header(HttpHeaders.AUTHORIZATION,jwt)

@@ -24,11 +24,14 @@ public class JwtUtils {
 
     public String generateJwtToken(Authentication authentication) {
         UserDetails userPrincipal = (UserDetails) authentication.getPrincipal();
+        String username = userPrincipal.getUsername();
+        Date currentTime = new Date();
+        Date expirationTime = new Date(new Date().getTime() + jwtExpirationMs);
 
         return Jwts.builder()
-                .setSubject((userPrincipal.getUsername()))
-                .setIssuedAt(new Date())
-                .setExpiration(new Date((new Date()).getTime()+ jwtExpirationMs))
+                .setSubject(username)
+                .setIssuedAt(currentTime)
+                .setExpiration(expirationTime)
                 .signWith(key(), SignatureAlgorithm.HS256)
                 .compact();
     }

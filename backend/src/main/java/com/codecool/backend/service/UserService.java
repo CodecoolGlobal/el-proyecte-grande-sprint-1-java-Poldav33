@@ -18,11 +18,11 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public SuccessDTO addUser(NewUserDTO newUserDTO, PasswordEncoder passwordEncoder) {
-        if (userRepository.findByUsernameAndPassword(newUserDTO.username(), newUserDTO.password()).isPresent()) {
+    public SuccessDTO addUser(NewUserDTO newUserDTO) {
+        if (userRepository.findByEmailOrUsername(newUserDTO.email(), newUserDTO.username()).isPresent()) {
             return new SuccessDTO(false);
         }
-        userRepository.save(new UserEntity(newUserDTO.username(), passwordEncoder.encode(newUserDTO.password()), newUserDTO.email(), Role.ROLE_USER));
+        userRepository.save(new UserEntity(newUserDTO.username(), newUserDTO.password(), newUserDTO.email(), Role.ROLE_USER));
         return new SuccessDTO(true);
     }
 

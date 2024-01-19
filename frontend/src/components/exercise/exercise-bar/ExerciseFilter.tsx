@@ -1,7 +1,17 @@
 import ExerciseSelectButton from "../exercise-select-button";
-import {useState} from "react";
+import React, {useState} from "react";
+import Button from "@mui/material/Button";
 
-const exerciseFilter = ({name, type, muscle, difficulty, onSubmit}: any) => {
+
+interface ExerciseFilterInterface {
+    name : string[],
+    type : string[],
+    muscle :string[],
+    difficulty : string[],
+    onSubmit : (e : React.FormEvent<HTMLFormElement>,nameValue : string, typeValue : string,
+                muscleValue : string, difficultyValue : string) => void
+}
+const ExerciseFilter = ({name, type, muscle, difficulty, onSubmit}: ExerciseFilterInterface) => {
 
     const [nameValue, setNameValue] = useState("");
     const [typeValue, setTypeValue] = useState("");
@@ -31,10 +41,10 @@ const exerciseFilter = ({name, type, muscle, difficulty, onSubmit}: any) => {
             <ExerciseSelectButton label={"type"} value={typeValue} values={type} onChange={onChange} />
             <ExerciseSelectButton label={"muscle"} value={muscleValue} values={muscle} onChange={onChange} />
             <ExerciseSelectButton label={"difficulty"} value={difficultyValue} values={difficulty} onChange={onChange} />
-            <button type={"submit"}>Search</button>
+            <Button type={"submit"}>Search</Button>
         </form>
     </>
 
 }
 
-export default exerciseFilter;
+export default ExerciseFilter;

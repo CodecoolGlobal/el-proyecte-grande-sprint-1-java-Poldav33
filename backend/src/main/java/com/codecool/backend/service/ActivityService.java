@@ -27,6 +27,7 @@ public class ActivityService {
         this.trainingRepository = trainingRepository;
         this.exerciseRepository = exerciseRepository;
     }
+
     public Activity saveActivity(NewActivityDTO newActivityDTO){
         Optional<UserEntity> userOptional = userRepository.findById(newActivityDTO.userId());
         if (userOptional.isPresent()) {

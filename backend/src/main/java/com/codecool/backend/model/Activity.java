@@ -1,11 +1,6 @@
 package com.codecool.backend.model;
 
-import com.codecool.backend.controller.dto.TrainingDTO;
-import com.codecool.backend.service.TrainingService;
 import jakarta.persistence.*;
-
-import java.time.LocalDate;
-import java.util.Optional;
 import java.util.Set;
 
 @Entity
