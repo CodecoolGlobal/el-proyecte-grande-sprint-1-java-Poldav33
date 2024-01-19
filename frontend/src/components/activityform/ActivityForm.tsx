@@ -14,19 +14,21 @@ import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import TrainingForm from "./trainingformcomponent/TrainingForm.tsx";
 import PlusIcon from "./plusicon";
 import {Button} from "@mui/material";
+import TrainingCard from "./trainingcard/TrainingCard.tsx";
+import {useNavigate} from "react-router-dom";
 
 interface Training {
-    exercise: number,
+    exerciseName: string,
     amount: number,
     repeats: number,
     duration: number
 }
 
 interface Activity {
-    userid: number,
-    date: typeof Date,
+    userId: number,
+    date: Date,
     description: string,
-    trainings: Training[]
+    trainingsDTO: Training[]
 }
 
 const defaultTheme = createTheme();
@@ -34,17 +36,38 @@ const defaultTheme = createTheme();
 const ActivityForm = () => {
     const [date, setDate] = useState<Dayjs>(dayjs());
     const [trainings, setTrainings] = useState<Training[]>([]);
+    const navigate = useNavigate();
+
 
     const onSave = (training: Training) => {
-        const trainingTemp = [...trainings]
-        trainingTemp.push(training);
-        setTrainings(trainings);
+        setTrainings((trainings) => [...trainings, training]);
     }
 
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        const data = new FormData(event.currentTarget);
+    async function handleSubmit(event: React.FormEvent<HTMLFormElement>){
+        event.preventDefault();
+        const data = new FormData(event.target as HTMLFormElement);
+        const newActivity: Activity = {
+            userId: 1,
+            date: new Date(data.get("date") as string),
+            description: String(data.get("description")) || '',
+            trainingsDTO: trainings
+        }
+        const response = await fetch("/api/activities", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(newActivity)
 
+        }).then((res) => res.json());
+        if (response.ok) {
+            console.log("Successfull activity save")
+        } else if (response.status === 400) {
+            console.log("Something went wrong")
+        }
+        navigate("/home")
     }
+
 
     return (
         <ThemeProvider theme={defaultTheme}>
@@ -70,7 +93,8 @@ const ActivityForm = () => {
                                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                                     <DemoContainer components={['DatePicker', 'DatePicker']}>
                                         <DatePicker
-                                            label="Controlled picker"
+                                            label="date"
+                                            name="date"
                                             value={date}
                                             onChange={(newValue) => setDate(newValue)}
                                         />
@@ -86,17 +110,6 @@ const ActivityForm = () => {
                                     name="description"
                                 />
                             </Grid>
-                            <Grid container xs={10}
-                                  sx={{
-                                      marginTop: 8,
-                                      marginRight: 5,
-                                      display: 'flex',
-                                      flexDirection: 'row',
-                                      alignItems: 'center',
-                                  }}>
-
-                                <TrainingForm onSave={onSave}/>
-                            </Grid>
                         </Grid>
                     </Box>
                     <Button
@@ -107,9 +120,22 @@ const ActivityForm = () => {
                         endIcon={<PlusIcon />}>
                         Save Activity
                     </Button>
+                    <Box>
+                        {trainings && trainings.map((training: Training) => <TrainingCard training={training}/>)}
+                    </Box>
                 </Box>
+                <Grid container
+                      spacing={1}
+                      sx={{
+                          marginTop: 8,
+                          marginRight: 5,
+                          display: 'flex',
+                          flexDirection: 'row',
+                          alignItems: 'center',
+                      }}>
 
-
+                    <TrainingForm onSave={onSave}/>
+                </Grid>
             </Container>
         </ThemeProvider>
         );
