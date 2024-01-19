@@ -2,7 +2,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 
 interface Training {
-    exercise: number,
+    exerciseName: string,
     amount: number,
     repeats: number,
     duration: number
@@ -15,7 +15,7 @@ const TrainingCard = ({ training }: trainingProp) => {
     return (
         <Box>
             <Typography>
-                Exercise: {training.exercise}
+                Exercise: {training.exerciseName}
             </Typography>
             <Typography>
                 Repeats: {training.repeats}
