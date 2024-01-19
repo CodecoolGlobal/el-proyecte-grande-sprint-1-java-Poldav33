@@ -12,9 +12,9 @@ import java.util.stream.Collectors;
 
 public class ActivityMapper {
 
-    public static NewActivityDTO getNewActivityDTO(Long userId, String date, String description) {
-        return new NewActivityDTO(userId, date, description);
-    }
+//    public static NewActivityDTO getNewActivityDTO(Long userId, String date, String description) {
+//        return new NewActivityDTO(userId, date, description);
+//    }
     public static ActivityDTO getActivityDTO(Activity activity, Set<Training> trainings) {
         return new ActivityDTO(
                 activity.getActivityId(),

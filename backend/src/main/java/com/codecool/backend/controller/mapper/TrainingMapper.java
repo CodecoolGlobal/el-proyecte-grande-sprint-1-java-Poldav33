@@ -7,13 +7,13 @@ public class TrainingMapper {
     public TrainingMapper() {
     }
 
-    public static TrainingDTO getTrainingDTOFromTraining(Training training) {
-        return new TrainingDTO(
-                training.getExerciseId(),
-                training.getRepeats(),
-                training.getAmount(),
-                training.getDuration(),
-                training.getActivityId()
-                );
-    }
+//    public static TrainingDTO getTrainingDTOFromTraining(Training training) {
+//        return new TrainingDTO(
+//                training.getExerciseId(),
+//                training.getRepeats(),
+//                training.getAmount(),
+//                training.getDuration(),
+//                training.getActivityId()
+//                );
+//    }
 }
