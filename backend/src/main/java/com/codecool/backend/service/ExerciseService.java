@@ -1,5 +1,6 @@
 package com.codecool.backend.service;
 
+import com.codecool.backend.controller.dto.ExerciseDTO;
 import com.codecool.backend.controller.dto.FilterDTO;
 import com.codecool.backend.model.Exercise;
 import com.codecool.backend.repository.ExerciseRepository;
