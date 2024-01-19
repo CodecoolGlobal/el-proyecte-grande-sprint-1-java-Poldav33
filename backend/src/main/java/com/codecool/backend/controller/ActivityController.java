@@ -25,8 +25,8 @@ public class ActivityController {
 
 
     @PostMapping("")
-    public void saveActivity(@RequestBody NewActivityDTO newActivityDTO) {
-        activityService.saveActivity(newActivityDTO);
+    public Activity saveActivity(@RequestBody NewActivityDTO newActivityDTO) {
+        return activityService.saveActivity(newActivityDTO);
     }
 
     @GetMapping("")
