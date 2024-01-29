@@ -9,6 +9,7 @@ import com.codecool.backend.repository.ActivityRepository;
 import com.codecool.backend.repository.ExerciseRepository;
 import com.codecool.backend.repository.TrainingRepository;
 import com.codecool.backend.repository.UserRepository;
+import com.codecool.backend.security.jwt.JwtUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +21,7 @@ public class ActivityService {
     private UserRepository userRepository;
     private TrainingRepository trainingRepository;
     private ExerciseRepository exerciseRepository;
+    private JwtUtils jwtUtils;
     @Autowired
     public ActivityService(ActivityRepository activityRepository, UserRepository userRepository, TrainingRepository trainingRepository, ExerciseRepository exerciseRepository) {
         this.activityRepository = activityRepository;
@@ -29,6 +31,8 @@ public class ActivityService {
     }
 
     public Activity saveActivity(NewActivityDTO newActivityDTO){
+        //Optional<UserEntity> userOptional = userRepository.findByUsername(jwtUtils.getUserNameFromJwtToken(newActivityDTO.jwt()));
+
         Optional<UserEntity> userOptional = userRepository.findById(newActivityDTO.userId());
         if (userOptional.isPresent()) {
             UserEntity user = userOptional.get();
@@ -55,13 +59,8 @@ public class ActivityService {
         }
         return null;
     }
-    public Activity getActivityById(Long id) {
-        Optional<Activity> optionalActivity = activityRepository.findById(id);
-        if (optionalActivity.isPresent()) {
-            Activity activity = optionalActivity.get();
-            return activity;
-        }
-        return null;
+    public Optional<Activity> getActivityById(Long id) {
+        return activityRepository.findById(id);
     }
     public void addTraining(Long trainingId, Long activityId) {
         Optional<Training> trainingOptional = trainingRepository.findById(trainingId);

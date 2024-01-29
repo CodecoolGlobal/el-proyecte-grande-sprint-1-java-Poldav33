@@ -2,10 +2,12 @@ package com.codecool.backend.controller;
 
 import com.codecool.backend.controller.dto.FilterDTO;
 import com.codecool.backend.controller.dto.ExerciseDTO;
+import com.codecool.backend.controller.mapper.ExerciseMapper;
 import com.codecool.backend.model.Exercise;
 import com.codecool.backend.service.ExerciseService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -30,13 +32,7 @@ public class ExerciseController {
         List<ExerciseDTO> exerciseDTOS = new ArrayList<>();
         List<Exercise> exercises = exerciseService.getActivities();
         exercises.forEach(exercise -> {
-            exerciseDTOS.add(new ExerciseDTO(
-                    exercise.getId(),
-                    exercise.getName(),
-                    exercise.getType(),
-                    exercise.getMuscle(),
-                    exercise.getDifficulty()
-            ));
+            exerciseDTOS.add(ExerciseMapper.getExerciseDTOFromExercise(exercise));
         });
         return exerciseDTOS;
     }
@@ -51,13 +47,7 @@ public class ExerciseController {
         try {
             List<Exercise> exercisesFromDB = exerciseService.getFilteredExercises(createFilterDTOs(filters));
             List<ExerciseDTO> exerciseDTOS = exercisesFromDB.stream()
-                    .map(exercise ->
-                            new ExerciseDTO(
-                                    exercise.getId(),
-                                    exercise.getName(),
-                                    exercise.getType(),
-                                    exercise.getMuscle(),
-                                    exercise.getDifficulty()))
+                    .map(ExerciseMapper::getExerciseDTOFromExercise)
                     .toList();
             return exerciseDTOS;
         } catch (Exception e) {

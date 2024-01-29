@@ -28,7 +28,8 @@ interface Activity {
     userId: number,
     date: Date,
     description: string,
-    trainingsDTO: Training[]
+    trainingsDTO: Training[],
+    jwtToken: string
 }
 
 const defaultTheme = createTheme();
@@ -50,7 +51,8 @@ const ActivityForm = () => {
             userId: 1,
             date: new Date(data.get("date") as string),
             description: String(data.get("description")) || '',
-            trainingsDTO: trainings
+            trainingsDTO: trainings,
+            jwtToken: localStorage.getItem("jwt-token") ?? ''
         }
         const response = await fetch("/api/activities", {
             method: "POST",
@@ -96,7 +98,7 @@ const ActivityForm = () => {
                                             label="date"
                                             name="date"
                                             value={date}
-                                            onChange={(newValue) => setDate(newValue)}
+                                            onChange={(newValue) => setDate(newValue ?? dayjs())}
                                         />
                                     </DemoContainer>
                                 </LocalizationProvider>

@@ -1,15 +1,14 @@
 package com.codecool.backend.controller;
 
-import com.codecool.backend.controller.dto.ActivityDTO;
 import com.codecool.backend.controller.dto.NewActivityDTO;
-import com.codecool.backend.controller.dto.TrainingDTO;
 import com.codecool.backend.model.Activity;
-import com.codecool.backend.model.Training;
 import com.codecool.backend.service.ActivityService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Optional;
 
@@ -26,16 +25,25 @@ public class ActivityController {
 
     @PostMapping("")
     public Activity saveActivity(@RequestBody NewActivityDTO newActivityDTO) {
-        return activityService.saveActivity(newActivityDTO);
+        Activity newActivity = activityService.saveActivity(newActivityDTO);
+        if (newActivity != null) {
+            return newActivity;
+        } else {
+            throw new ResponseStatusException(
+                    HttpStatus.NOT_FOUND
+            );
+        }
     }
 
     @GetMapping("")
     public Activity getActivityById(@RequestParam Long id) {
-        return activityService.getActivityById(id);
-    }
-
-    @PostMapping("/addtraining")
-    public void addTraining(@RequestParam Long trainingId, @RequestParam Long activityId) {
-        activityService.addTraining(trainingId, activityId);
+        Optional<Activity> optionalActivity = activityService.getActivityById(id);
+        if (optionalActivity.isPresent()) {
+            return optionalActivity.get();
+        } else {
+            throw new ResponseStatusException(
+                    HttpStatus.NOT_FOUND
+            );
+        }
     }
 }

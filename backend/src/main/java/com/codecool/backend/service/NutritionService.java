@@ -1,6 +1,7 @@
 package com.codecool.backend.service;
 
 import com.codecool.backend.controller.dto.NutritionDTO;
+import com.codecool.backend.controller.mapper.NutritionMapper;
 import com.codecool.backend.model.Nutrition;
 import com.codecool.backend.repository.NutritionRepository;
 import org.springframework.beans.factory.annotation.Value;
@@ -25,8 +26,6 @@ public class NutritionService {
 
     public List<NutritionDTO> filterNutrition(String nutritionName) {
         Nutrition nutritionObj = null;
-
-
         if (nutritionRepository.findByName(nutritionName).isPresent()) {
             nutritionObj = nutritionRepository.findByName(nutritionName).get();
             List<NutritionDTO> nutritionList = new ArrayList<>();
@@ -53,13 +52,9 @@ public class NutritionService {
         return new ArrayList<>(Collections.singleton(response[0]));
     }
 
-    public List<NutritionDTO> getBasicNutritions() {
-        return nutritionRepository.findAll().stream().map(nut -> new NutritionDTO(
-                nut.getName(),
-                nut.getCalories(),
-                nut.getFat_total_g(),
-                nut.getCarbohydrates_total_g(),
-                nut.getFiber_g()
-        )).toList();
+    public List<NutritionDTO> getAllNutrition() {
+        return nutritionRepository.findAll().stream()
+                .map(NutritionMapper::getNutritionDTOFromNutrition)
+                .toList();
     }
 }

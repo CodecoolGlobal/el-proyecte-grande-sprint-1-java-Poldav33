@@ -22,14 +22,14 @@ public class NutritionController {
     @GetMapping("/nutrition")
     public ResponseEntity<List<NutritionDTO>> getNutrition(@RequestParam String name){
         if (name.isEmpty()) {
-            return ResponseEntity.ok(nutritionService.getBasicNutritions());
+            return ResponseEntity.ok(nutritionService.getAllNutrition());
         }
         return ResponseEntity.ok(nutritionService.filterNutrition(name));
     }
 
     @GetMapping("/nutritions")
     public List<NutritionDTO> getBasicNutritions () {
-      return   nutritionService.getBasicNutritions();
+      return   nutritionService.getAllNutrition();
     }
 
 }
