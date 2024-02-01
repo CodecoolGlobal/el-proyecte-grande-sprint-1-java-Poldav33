@@ -3,6 +3,7 @@ package com.codecool.backend.model;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name="trainings")
 public class Training {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
