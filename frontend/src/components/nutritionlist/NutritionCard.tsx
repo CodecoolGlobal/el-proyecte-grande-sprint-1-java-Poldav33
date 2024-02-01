@@ -12,7 +12,7 @@ interface BasicCardInterface {
 
  const BasicCard : React.FC<BasicCardInterface> =({nutrition}) => {
     return (
-        <Card  sx={{ maxWidth: 275}} >
+        <Card  sx={{ maxWidth: 275 , margin : 0.5,  border : 1, borderColor : 'primary.main'}} >
             <CardContent >
                 <Typography variant="h5" component="div">
                     {nutrition.name}
