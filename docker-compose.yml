@@ -9,7 +9,7 @@ services:
       POSTGRES_PASSWORD: product_user_password
       POSTGRES_DB: product
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - /var/lib/postgresql/data
 
   spring-boot-app:
     build:
