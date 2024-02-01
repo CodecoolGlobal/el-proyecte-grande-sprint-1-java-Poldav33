@@ -13,13 +13,14 @@ const ExercisePage = () => {
     });
     const [exercises, setExercises] = useState<Exercise[]>([]);
 
-    const name = ["Rickshaw Carry",
-    "Single-Leg Press",
-    "Landmine twist",
-    "Weighted pull-up"]
-    const type = ["strongman", "strength"];
-    const muscle = ["forearms", "quadriceps", "abdominals", "lats"];
-    const difficulty = ["beginner", "intermediate"];
+    const [name, setName] = useState<string[]>([]);
+    const type = [
+        "cardio", "olympic_weightlifting", "plyometrics", "powerlifting", "strength", "stretching", "strongman"
+    ];
+    const muscle = [
+        "abdominals", "abductors", "adductors", "biceps", "calves", "chest", "forearms", "glutes",
+        "hamstrings", "lats", "lower_back", "middle_back", "neck", "quadriceps", "traps", "triceps"]
+    const difficulty = ["beginner", "intermediate", "expert"];
 
     useEffect(() => {
         fetchData();
@@ -28,15 +29,23 @@ const ExercisePage = () => {
     const fetchData =  () => {
         const token = localStorage.getItem("jwt-token");
         console.log(token);
-        const response = fetch(`/api/exercises/filter?name=${filter.name}&type=${filter.type}&muscle=${filter.muscle}&difficulty=${filter.difficulty}`, {
+        fetch(`/api/exercises/filter?name=${filter.name}&type=${filter.type}&muscle=${filter.muscle}&difficulty=${filter.difficulty}`, {
             headers: {
                 "Authorization": "Bearer " + token,
             }
             })
-            .then(res => res.json())
             .then((res) => {
-                console.log(response)
+                const response = res.json()
+                console.log(response);
+                return response;
+            })
+            .then((res) => {
+                console.log(res)
                 setExercises(res);
+                if (name.length < 1) {
+                    setName(res.map(response => response.name));
+                    console.log(name)
+                }
             })
     }
 

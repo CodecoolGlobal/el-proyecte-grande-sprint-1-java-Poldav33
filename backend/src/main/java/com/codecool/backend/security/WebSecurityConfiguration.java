@@ -64,7 +64,7 @@ public class WebSecurityConfiguration {
                         auth.requestMatchers("/api/users/**").permitAll()
                                 .requestMatchers("/api/nutrition").permitAll()
                                 .requestMatchers("/api/nutritions").permitAll()
-                                .requestMatchers("/api/exercises/**").authenticated()
+                                .requestMatchers("/api/exercises/**").permitAll()
                                 .requestMatchers("/api/activities/**").permitAll()
                                 .requestMatchers("/api/activities").permitAll()
                                 .requestMatchers("/error").permitAll()

@@ -1,7 +1,7 @@
 package com.codecool.backend.service;
 
-import com.codecool.backend.controller.dto.ExerciseDTO;
 import com.codecool.backend.controller.dto.FilterDTO;
+import com.codecool.backend.controller.dto.NewExerciseDTO;
 import com.codecool.backend.model.Exercise;
 import com.codecool.backend.repository.ExerciseRepository;
 import com.codecool.backend.specification.ExerciseSpecification;
@@ -24,7 +24,9 @@ public class ExerciseService {
     public List<Exercise> getFilteredExercises(List<FilterDTO> filterDTOS) {
         return exerciseRepository.findAll(ExerciseSpecification.columnEqual(filterDTOS));
     }
-    public void addExercise(ExerciseDTO exerciseDTO) {
+    public void addExercise(NewExerciseDTO exerciseDTO) {
+        var exe = exerciseDTO;
+        System.out.println(exe);
         exerciseRepository.save(new Exercise(
                 exerciseDTO.name(),
                 exerciseDTO.type(),
