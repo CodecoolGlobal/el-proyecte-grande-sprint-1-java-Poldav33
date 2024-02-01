@@ -14,7 +14,7 @@ const TrainingSummary = ({ trainings } : Trainings) => {
     return (
         <Box>
             {
-                trainings.map((training : Training) => <TrainingCard training={training}/>)
+                trainings.map((training : any) => <TrainingCard training={training}/>)
             }
         </Box>
     );
