@@ -96,7 +96,7 @@ const ActivityForm = () => {
                                             label="date"
                                             name="date"
                                             value={date}
-                                            onChange={(newValue) => setDate(newValue)}
+                                            onChange={(newValue : any) => setDate(newValue)}
                                         />
                                     </DemoContainer>
                                 </LocalizationProvider>

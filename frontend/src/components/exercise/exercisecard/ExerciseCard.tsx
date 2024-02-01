@@ -3,10 +3,9 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import Exercise from "../../type/Exercise.ts";
 
 interface ExerciseCardInterface {
-    activity : Exercise
+    activity : any
 }
 
 const ExerciseCard = ({activity}: ExerciseCardInterface) => {
