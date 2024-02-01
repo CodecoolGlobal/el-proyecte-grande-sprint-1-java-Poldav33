@@ -3,6 +3,7 @@ package com.codecool.backend.service;
 import com.codecool.backend.controller.dto.NewActivityDTO;
 import com.codecool.backend.controller.dto.TrainingDTO;
 import com.codecool.backend.model.Activity;
+import com.codecool.backend.model.Exercise;
 import com.codecool.backend.model.Training;
 import com.codecool.backend.model.UserEntity;
 import com.codecool.backend.repository.ActivityRepository;
@@ -12,14 +13,16 @@ import com.codecool.backend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class ActivityService {
-    private ActivityRepository activityRepository;
-    private UserRepository userRepository;
-    private TrainingRepository trainingRepository;
-    private ExerciseRepository exerciseRepository;
+    private final ActivityRepository activityRepository;
+    private final UserRepository userRepository;
+    private final TrainingRepository trainingRepository;
+    private final ExerciseRepository exerciseRepository;
     @Autowired
     public ActivityService(ActivityRepository activityRepository, UserRepository userRepository, TrainingRepository trainingRepository, ExerciseRepository exerciseRepository) {
         this.activityRepository = activityRepository;
@@ -40,16 +43,17 @@ public class ActivityService {
             activityRepository.save(newActivity);
             System.out.println(newActivityDTO.trainingsDTO().length);
             for (TrainingDTO trainingDTO : newActivityDTO.trainingsDTO()) {
-                System.out.println(trainingDTO.exerciseName());
-                System.out.println(exerciseRepository.findByName(trainingDTO.exerciseName()).get());
+                Optional<Exercise> optionalExercise = exerciseRepository.findByName(trainingDTO.exerciseName());
                 Training training = new Training(
-                        exerciseRepository.findByName(trainingDTO.exerciseName()).get(),
+                        optionalExercise.orElse(null),
                         trainingDTO.repeats(),
                         trainingDTO.amount(),
                         trainingDTO.durations(),
                         newActivity
                 );
-                trainingRepository.save(training);
+                if (training.getExercise() != null) {
+                    trainingRepository.save(training);
+                }
             }
             return newActivity;
         }
@@ -57,11 +61,7 @@ public class ActivityService {
     }
     public Activity getActivityById(Long id) {
         Optional<Activity> optionalActivity = activityRepository.findById(id);
-        if (optionalActivity.isPresent()) {
-            Activity activity = optionalActivity.get();
-            return activity;
-        }
-        return null;
+        return optionalActivity.orElse(null);
     }
     public void addTraining(Long trainingId, Long activityId) {
         Optional<Training> trainingOptional = trainingRepository.findById(trainingId);
@@ -77,5 +77,8 @@ public class ActivityService {
             trainingRepository.save(training);
             activityRepository.save(activity);
         }
+    }
+    public List<Activity> getActivities() {
+        return activityRepository.findAll();
     }
 }
