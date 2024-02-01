@@ -15,7 +15,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 @Service
 public class ActivityService {
@@ -32,6 +31,9 @@ public class ActivityService {
     }
 
     public Activity saveActivity(NewActivityDTO newActivityDTO){
+        for (var training : newActivityDTO.trainingsDTO()) {
+            System.out.println(training);
+        }
         Optional<UserEntity> userOptional = userRepository.findById(newActivityDTO.userId());
         if (userOptional.isPresent()) {
             UserEntity user = userOptional.get();
@@ -41,16 +43,18 @@ public class ActivityService {
                     newActivityDTO.description()
             );
             activityRepository.save(newActivity);
-            System.out.println(newActivityDTO.trainingsDTO().length);
             for (TrainingDTO trainingDTO : newActivityDTO.trainingsDTO()) {
                 Optional<Exercise> optionalExercise = exerciseRepository.findByName(trainingDTO.exerciseName());
+                System.out.println(trainingDTO.duration());
                 Training training = new Training(
                         optionalExercise.orElse(null),
                         trainingDTO.repeats(),
                         trainingDTO.amount(),
-                        trainingDTO.durations(),
+                        trainingDTO.duration(),
                         newActivity
                 );
+                var test = training;
+                System.out.println(test);
                 if (training.getExercise() != null) {
                     trainingRepository.save(training);
                 }
