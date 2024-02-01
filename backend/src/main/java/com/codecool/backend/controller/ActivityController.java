@@ -11,7 +11,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/api/activities")
@@ -29,7 +31,7 @@ public class ActivityController {
         return activityService.saveActivity(newActivityDTO);
     }
 
-    @GetMapping("")
+    @GetMapping("/")
     public Activity getActivityById(@RequestParam Long id) {
         return activityService.getActivityById(id);
     }
@@ -37,5 +39,9 @@ public class ActivityController {
     @PostMapping("/addtraining")
     public void addTraining(@RequestParam Long trainingId, @RequestParam Long activityId) {
         activityService.addTraining(trainingId, activityId);
+    }
+    @GetMapping("")
+    public List<Activity> getActivities() {
+        return activityService.getActivities();
     }
 }

@@ -20,7 +20,7 @@ interface Setting {
 }
 
 const pages = ['Recipes', 'Nutrition values', 'Exercises', 'New Activity', 'Training plan'];
-const navigationRouters = ['/recipes', '/nutrition', '/exercise', '/newactivity', '/trainingplan']
+const navigationRouters = ['/recipes', '/nutrition', '/exercises', '/newactivity', '/trainingplan']
 const settings: Setting[] = [{
     name: "Registration",
     path: "/registration"
