@@ -14,11 +14,11 @@ import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import TrainingForm from "./trainingformcomponent/TrainingForm.tsx";
 import PlusIcon from "./plusicon";
 import {Button} from "@mui/material";
-import TrainingCard from "./trainingcard/TrainingCard.tsx";
+import NewTrainingCard from "./newtrainingcard/NewTrainingCard.tsx";
 import {useNavigate} from "react-router-dom";
 
 interface Training {
-    exerciseName: string,
+    name: string,
     amount: number,
     repeats: number,
     duration: number
@@ -52,6 +52,7 @@ const ActivityForm = () => {
             description: String(data.get("description")) || '',
             trainingsDTO: trainings
         }
+        console.log(newActivity)
         const response = await fetch("/api/activities", {
             method: "POST",
             headers: {
@@ -96,7 +97,7 @@ const ActivityForm = () => {
                                             label="date"
                                             name="date"
                                             value={date}
-                                            onChange={(newValue) => setDate(newValue)}
+                                            onChange={(newValue : any) => setDate(newValue)}
                                         />
                                     </DemoContainer>
                                 </LocalizationProvider>
@@ -121,7 +122,7 @@ const ActivityForm = () => {
                         Save Activity
                     </Button>
                     <Box>
-                        {trainings && trainings.map((training: Training) => <TrainingCard training={training}/>)}
+                        {trainings && trainings.map((training: Training) => <NewTrainingCard training={training}/>)}
                     </Box>
                 </Box>
                 <Grid container
