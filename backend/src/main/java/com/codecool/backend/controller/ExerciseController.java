@@ -46,7 +46,7 @@ public class ExerciseController {
         return new FilterDTO("key", "value");
     }
 
-    @GetMapping("filter")
+    @GetMapping("/filter")
     public List<ExerciseDTO> getFilteredExercises(@RequestParam Map<String, String> filters) {
         try {
             List<Exercise> exercisesFromDB = exerciseService.getFilteredExercises(createFilterDTOs(filters));

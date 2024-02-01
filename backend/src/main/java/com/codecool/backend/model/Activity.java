@@ -52,7 +52,10 @@ public class Activity {
                 + "\n" +
                 "Description" + description;
     }
+
+
     public void addTraining(Training training) {
         this.trainings.add(training);
     }
 }
+
