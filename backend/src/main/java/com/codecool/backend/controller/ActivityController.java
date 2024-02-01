@@ -27,8 +27,8 @@ public class ActivityController {
 
 
     @PostMapping("")
-    public Activity saveActivity(@RequestBody NewActivityDTO newActivityDTO) {
-        return activityService.saveActivity(newActivityDTO);
+    public Activity saveActivity(@RequestHeader(name = "Authorization") String authorizationHeader,@RequestBody NewActivityDTO newActivityDTO) {
+        return activityService.saveActivity(authorizationHeader ,newActivityDTO);
     }
 
     @GetMapping("/")

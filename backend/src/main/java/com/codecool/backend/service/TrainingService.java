@@ -14,9 +14,9 @@ import java.util.Optional;
 
 @Service
 public class TrainingService {
-    private TrainingRepository trainingRepository;
-    private ActivityRepository activityRepository;
-    private ExerciseRepository exerciseRepository;
+    private final TrainingRepository trainingRepository;
+    private final ActivityRepository activityRepository;
+    private final ExerciseRepository exerciseRepository;
     @Autowired
     public TrainingService(TrainingRepository trainingRepository, ActivityRepository activityRepository, ExerciseRepository exerciseRepository) {
         this.trainingRepository = trainingRepository;

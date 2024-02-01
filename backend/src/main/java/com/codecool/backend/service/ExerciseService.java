@@ -25,8 +25,6 @@ public class ExerciseService {
         return exerciseRepository.findAll(ExerciseSpecification.columnEqual(filterDTOS));
     }
     public void addExercise(NewExerciseDTO exerciseDTO) {
-        var exe = exerciseDTO;
-        System.out.println(exe);
         exerciseRepository.save(new Exercise(
                 exerciseDTO.name(),
                 exerciseDTO.type(),

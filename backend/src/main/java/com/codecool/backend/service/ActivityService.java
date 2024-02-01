@@ -10,6 +10,7 @@ import com.codecool.backend.repository.ActivityRepository;
 import com.codecool.backend.repository.ExerciseRepository;
 import com.codecool.backend.repository.TrainingRepository;
 import com.codecool.backend.repository.UserRepository;
+import com.codecool.backend.security.jwt.JwtUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,19 +23,20 @@ public class ActivityService {
     private final UserRepository userRepository;
     private final TrainingRepository trainingRepository;
     private final ExerciseRepository exerciseRepository;
+    private final JwtUtils jwtUtils;
     @Autowired
-    public ActivityService(ActivityRepository activityRepository, UserRepository userRepository, TrainingRepository trainingRepository, ExerciseRepository exerciseRepository) {
+    public ActivityService(ActivityRepository activityRepository, UserRepository userRepository, TrainingRepository trainingRepository, ExerciseRepository exerciseRepository, JwtUtils jwtUtils) {
         this.activityRepository = activityRepository;
         this.userRepository = userRepository;
         this.trainingRepository = trainingRepository;
         this.exerciseRepository = exerciseRepository;
+        this.jwtUtils = jwtUtils;
     }
 
-    public Activity saveActivity(NewActivityDTO newActivityDTO){
-        for (var training : newActivityDTO.trainingsDTO()) {
-            System.out.println(training);
-        }
-        Optional<UserEntity> userOptional = userRepository.findById(newActivityDTO.userId());
+    public Activity saveActivity(String authorizationHeader,NewActivityDTO newActivityDTO){
+        String jwtToken = authorizationHeader.substring("Bearer ".length());
+
+        Optional<UserEntity> userOptional = userRepository.findByUsername(jwtUtils.getUserNameFromJwtToken(jwtToken));
         if (userOptional.isPresent()) {
             UserEntity user = userOptional.get();
             Activity newActivity = new Activity(
@@ -53,8 +55,6 @@ public class ActivityService {
                         trainingDTO.duration(),
                         newActivity
                 );
-                var test = training;
-                System.out.println(test);
                 if (training.getExercise() != null) {
                     trainingRepository.save(training);
                 }
