@@ -2,6 +2,9 @@ import {NutritionType} from "../../type/types.ts";
 import React from "react";
 import BasicCard from "./NutritionCard.tsx";
 import "./NutritionList.css";
+import TextField from "@mui/material/TextField";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
 
 interface NutritionListProps {
     getNut : (nut : string) => void,
@@ -20,22 +23,28 @@ const NutritionList : React.FC<NutritionListProps> = ({getNut, nutrition}) => {
 
 
     return (
-        <div className={"parent"}>
+        <Box className={"parent"}>
             <form onSubmit={handleSubmit}>
-                <input name={"search"} type={"search"}></input>
-                <button type={"submit"}>search</button>
+                <TextField sx={{margin : 2}} label="Ingridient" size="small" name={"search"} type={"search"}></TextField>
+                <Button
+                    type="submit"
+                    variant="contained"
+                    sx={{ mt: 2.2, mb: 2 }}
+                >
+                    Search
+                </Button>
             </form>
             <div className={"container"}>
 
                 {nutrition.map((nut: NutritionType) => (
                     <div key={nut.name}>
-                        <BasicCard  nutrition={nut}/>
+                        <BasicCard nutrition={nut}/>
                     </div>
                 ))}
 
 
             </div>
-        </div>
+        </Box>
     )
 }
 
