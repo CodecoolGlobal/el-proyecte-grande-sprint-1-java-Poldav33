@@ -11,7 +11,7 @@ interface Training {
 interface trainingProp {
     training: Training
 }
-const TrainingCard = ({ training }: trainingProp) => {
+const NewTrainingCard = ({ training }: trainingProp) => {
     return (
         <Box>
             <Typography>
@@ -30,4 +30,4 @@ const TrainingCard = ({ training }: trainingProp) => {
     );
 }
 
-export default  TrainingCard;
+export default  NewTrainingCard;

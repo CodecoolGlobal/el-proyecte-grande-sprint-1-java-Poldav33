@@ -53,7 +53,6 @@ function TrainingForm({ onSave }: onSave)  {
 
     useEffect(() => {
         if (training.exerciseName != '') {
-            console.log(training);
             onSave(training);
         }
     }, [training]);
