@@ -24,6 +24,7 @@ function UserLoginPage() {
 
         if (response.ok) {
             localStorage.setItem("jwt-token", authorizationHeader!)
+            localStorage.setItem("username", user.username)
             console.log(localStorage.getItem("jwt-token"))
             setUserIsValid(true);
         } else if (response.status === 400) {

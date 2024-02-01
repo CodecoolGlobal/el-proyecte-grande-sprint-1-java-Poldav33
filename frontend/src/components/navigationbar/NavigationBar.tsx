@@ -19,8 +19,8 @@ interface Setting {
     path: string
 }
 
-const pages = ['Recipes', 'Nutrition values', 'Exercises', 'New Activity', 'Training plan'];
-const navigationRouters = ['/recipes', '/nutrition', '/exercises', '/newactivity', '/trainingplan']
+const pages = ['Recipes', 'Nutrition values', 'Exercises', 'New Activity', 'Recent Activities'];
+const navigationRouters = ['/recipes', '/nutrition', '/exercises', '/newactivity', '/timeline']
 const settings: Setting[] = [{
     name: "Registration",
     path: "/registration"
@@ -60,7 +60,7 @@ function NavigationBar() {
                         variant="h6"
                         noWrap
                         component="a"
-                        href="#app-bar-with-responsive-menu"
+                        href="home"
                         sx={{
                             mr: 2,
                             display: { xs: 'none', md: 'flex' },
@@ -144,7 +144,7 @@ function NavigationBar() {
                     <Box sx={{ flexGrow: 0 }}>
                         <Tooltip title="Open settings">
                             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                                <Avatar alt={localStorage.getItem("username")} src={`https://robohash.org/${localStorage.getItem("username")}`}/>
                             </IconButton>
                         </Tooltip>
                         <Menu

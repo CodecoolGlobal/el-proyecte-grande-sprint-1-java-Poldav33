@@ -4,6 +4,9 @@ import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import {useEffect, useState} from "react";
 import TrainingCard from "../trainingcard";
+import Avatar from "@mui/material/Avatar";
+import {Card, CardContent, Divider, IconButton, Stack} from "@mui/material";
+import MoreVertIcon from '@mui/icons-material/MoreVert';
 
 interface UserBasicDetail {
     username : string,
@@ -35,6 +38,16 @@ interface ActivityProp {
     activity: Activity
 }
 
+const activityStyle = {
+    bgcolor: 'background.paper',
+    borderColor: 'text.primary',
+    m: 1,
+    border: 1,
+    width: '40rem',
+    height: '15rem',
+    borderRadius: 1
+};
+
 const ActivityCard = ({ activity } : ActivityProp) => {
     const [trainings, setTrainings] = useState<Training[]>();
     useEffect(() => {
@@ -55,34 +68,31 @@ const ActivityCard = ({ activity } : ActivityProp) => {
         setTrainings(trainings);
     }
 
-
+    console.log(activity);
     return (
-            <Container component={"main"} maxWidth={"xs"}>
-                <Box
-                    sx={{
-                        marginTop: 8,
-                        display: 'flex',
-                        flexDirection: 'column',
-                        alignItems: 'center',
-                    }}
-                >
-                    <Grid container spacing={1}>
-                        <Grid item>
-                            <Typography>
-                                {activity.user.username}
-                            </Typography>
-                            <Typography>
-                                {activity.date.toString()}
-                            </Typography>
-                            <Typography>
-                                {activity.description}
-                            </Typography>
-                            {trainings && trainings.length > 0 && trainings.map((training: Training) =>
-                                <TrainingCard training={training}/>)}
-                        </Grid>
-                    </Grid>
+        <Card>
+            <CardContent>
+                <Box display="flex" alignItems="center" justifyContent="space-between">
+                    <Box display="flex" alignItems="center">
+                        <Avatar alt={activity.user.username} src={`https://robohash.org/${activity.user.username}`} />
+                        <Box marginLeft={2}>
+                            <Typography variant="h6">{activity.user.username}</Typography>
+                            <Typography color="textSecondary">{activity.date.toString().substring(0,10)}</Typography>
+                        </Box>
+                    </Box>
                 </Box>
-            </Container>
+
+                <Typography variant="body1" style={{ marginTop: 16 }}>
+                    {activity.description}
+                </Typography>
+
+                <Box marginTop={2}>
+                    {trainings && trainings.length && trainings.map((training, index) => (
+                        <TrainingCard key={index} training={training} />
+                    ))}
+                </Box>
+            </CardContent>
+        </Card>
     );
 }
 

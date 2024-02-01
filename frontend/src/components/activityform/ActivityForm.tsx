@@ -45,6 +45,7 @@ const ActivityForm = () => {
 
     async function handleSubmit(event: React.FormEvent<HTMLFormElement>){
         event.preventDefault();
+        const token : string = localStorage.getItem("jwt-token");
         const data = new FormData(event.target as HTMLFormElement);
         const newActivity: Activity = {
             userId: 1,
@@ -56,6 +57,7 @@ const ActivityForm = () => {
         const response = await fetch("/api/activities", {
             method: "POST",
             headers: {
+                "Authorization": "Bearer " + token,
                 "Content-Type": "application/json",
             },
             body: JSON.stringify(newActivity)
@@ -121,9 +123,6 @@ const ActivityForm = () => {
                         endIcon={<PlusIcon />}>
                         Save Activity
                     </Button>
-                    <Box>
-                        {trainings && trainings.map((training: Training) => <NewTrainingCard training={training}/>)}
-                    </Box>
                 </Box>
                 <Grid container
                       spacing={1}
@@ -137,6 +136,9 @@ const ActivityForm = () => {
 
                     <TrainingForm onSave={onSave}/>
                 </Grid>
+                <Box>
+                    {trainings && trainings.map((training: Training) => <NewTrainingCard training={training}/>)}
+                </Box>
             </Container>
         </ThemeProvider>
         );

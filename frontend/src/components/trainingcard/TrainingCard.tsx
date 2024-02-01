@@ -1,3 +1,4 @@
+import { Card, CardContent } from "@mui/material";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 
@@ -20,21 +21,19 @@ interface trainingProp {
     training: Training
 }
 const TrainingCard = ({ training }: trainingProp) => {
+    console.log(training);
     return (
-        <Box>
-            <Typography>
-                Exercise: {training.exercise.name}
-            </Typography>
-            <Typography>
-                Repeats: {training.repeats}
-            </Typography>
-            <Typography>
-                Amount: {training.amount}
-            </Typography>
-            <Typography>
-                Duration: {training.duration}
-            </Typography>
-        </Box>
+        <Card>
+            <CardContent>
+                <Typography variant="h5" component="div">
+                    {training.exercise.name}
+                </Typography>
+                <Typography color="textSecondary">
+                    Repeat: {training.repeats} | Sets: {training.amount} | Duration: {training.duration} mins
+                </Typography>
+            </CardContent>
+        </Card>
+
     );
 }
 

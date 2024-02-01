@@ -34,11 +34,20 @@ const ActivityTimeLine = () => {
         const activities = await response.json();
         setActivities(activities);
     }
-    return <Box>
-        {activities && activities.map(
-            (activity : Activity) => <ActivityCard activity={activity}/>
-        )}
+    return (
+
+        <Box
+        sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'flex-start'
+        }}
+        >
+            {activities && activities.map(
+                (activity : Activity) => <ActivityCard activity={activity}/>
+            )}
         </Box>
+    )
 }
 
 export default ActivityTimeLine;
