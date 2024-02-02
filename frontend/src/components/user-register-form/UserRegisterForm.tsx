@@ -10,12 +10,10 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import {RegistrationUser} from "../../type/types.ts";
+import {onSaveRegisterUser, RegistrationUser} from "../../type/types.ts";
 import {useNavigate} from "react-router-dom";
 
-interface onSaveProp {
-    onSave : (user : RegistrationUser) => void
-}
+
 
 function Copyright() {
     return (
@@ -32,7 +30,7 @@ function Copyright() {
 
 const defaultTheme = createTheme();
 
-export default function SignUp({onSave}: onSaveProp) {
+export default function SignUp({onSave}: onSaveRegisterUser) {
     const navigate = useNavigate();
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
