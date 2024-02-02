@@ -1,26 +1,8 @@
 import { Card, CardContent } from "@mui/material";
-import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
+import { TrainingProp } from "../../type/types.ts";
 
-interface Training {
-    exercise: Exercise,
-    amount: number,
-    repeats: number,
-    duration: number
-}
-
-interface Exercise {
-    difficulty : string,
-    id : number,
-    muscle : string,
-    name : string,
-    type : string
-}
-
-interface trainingProp {
-    training: Training
-}
-const TrainingCard = ({ training }: trainingProp) => {
+const TrainingCard = ({ training }: TrainingProp) => {
     console.log(training);
     return (
         <Card>
