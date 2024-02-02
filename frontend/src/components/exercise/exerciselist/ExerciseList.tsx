@@ -1,12 +1,9 @@
 import ExerciseCard from "../exercisecard";
 import Box from "@mui/material/Box";
-import Exercise from "../../../type/Exercise.ts";
+import {ExerciseList} from "../../../type/types.ts";
 
-interface ExerciseListInterface {
-    exercises : Exercise[]
-}
 
-const ExerciseList = ({exercises}: ExerciseListInterface) => {
+const ExerciseList = ({exercises}: ExerciseList) => {
     console.log(exercises);
 
     return (
@@ -21,7 +18,7 @@ const ExerciseList = ({exercises}: ExerciseListInterface) => {
                  marginRight: 'auto'
              }}>
             {exercises.length > 0 ? exercises.map(
-                (activity: any) => <ExerciseCard activity={activity}/>
+                (activity) => <ExerciseCard exercise={activity}/>
             ) : ""}
         </Box>
     );
