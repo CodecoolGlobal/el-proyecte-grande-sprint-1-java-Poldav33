@@ -2,15 +2,10 @@ import * as React from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
-import {NutritionType} from "../../type/types.ts";
+import {NutritionCardInterface, NutritionProp} from "../../type/types.ts";
 
 
-interface BasicCardInterface {
-    nutrition : NutritionType
-}
-
-
- const BasicCard : React.FC<BasicCardInterface> =({nutrition}) => {
+ const NutritionCard : React.FC<NutritionCardInterface> =({nutrition}: NutritionProp) => {
     return (
         <Card  sx={{ maxWidth: 275 , margin : 0.5,  border : 1, borderColor : 'primary.main'}} >
             <CardContent >
@@ -34,4 +29,4 @@ interface BasicCardInterface {
         </Card>
     );
 }
-export  default BasicCard
+export  default NutritionCard
