@@ -16,42 +16,33 @@ import PlusIcon from "./plusicon";
 import {Button} from "@mui/material";
 import NewTrainingCard from "./newtrainingcard/NewTrainingCard.tsx";
 import {useNavigate} from "react-router-dom";
-
-interface Training {
-    name: string,
-    amount: number,
-    repeats: number,
-    duration: number
-}
-
-interface Activity {
-    userId: number,
-    date: Date,
-    description: string,
-    trainingsDTO: Training[]
-}
+import {TrainingWithExerciseName, UserBasicDetail, NewActivity} from '../../type/types.ts';
 
 const defaultTheme = createTheme();
 
 const ActivityForm = () => {
     const [date, setDate] = useState<Dayjs>(dayjs());
-    const [trainings, setTrainings] = useState<Training[]>([]);
+    const [trainings, setTrainings] = useState<TrainingWithExerciseName[]>([]);
     const navigate = useNavigate();
 
 
-    const onSave = (training: Training) => {
+    const onSave = (training: TrainingWithExerciseName) => {
         setTrainings((trainings) => [...trainings, training]);
     }
 
     async function handleSubmit(event: React.FormEvent<HTMLFormElement>){
         event.preventDefault();
-        const token : string = localStorage.getItem("jwt-token");
+        const token = localStorage.getItem("jwt-token");
         const data = new FormData(event.target as HTMLFormElement);
-        const newActivity: Activity = {
-            userId: 1,
+        const userDetails : UserBasicDetail = {
+            username: localStorage.getItem("username")!,
+            userId: Number(localStorage.getItem("userId"))!
+        }
+        const newActivity: NewActivity = {
+            user : userDetails,
             date: new Date(data.get("date") as string),
             description: String(data.get("description")) || '',
-            trainingsDTO: trainings
+            trainings: trainings
         }
         console.log(newActivity)
         const response = await fetch("/api/activities", {
@@ -99,7 +90,7 @@ const ActivityForm = () => {
                                             label="date"
                                             name="date"
                                             value={date}
-                                            onChange={(newValue : any) => setDate(newValue)}
+                                            onChange={(newValue) => setDate(newValue!)}
                                         />
                                     </DemoContainer>
                                 </LocalizationProvider>
@@ -137,7 +128,7 @@ const ActivityForm = () => {
                     <TrainingForm onSave={onSave}/>
                 </Grid>
                 <Box>
-                    {trainings && trainings.map((training: Training) => <NewTrainingCard training={training}/>)}
+                    {trainings && trainings.map((training) => <NewTrainingCard training={training}/>)}
                 </Box>
             </Container>
         </ThemeProvider>
