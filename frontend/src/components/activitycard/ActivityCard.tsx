@@ -1,52 +1,16 @@
 import Box from "@mui/material/Box";
-import Container from "@mui/material/Container";
-import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import {useEffect, useState} from "react";
 import TrainingCard from "../trainingcard";
 import Avatar from "@mui/material/Avatar";
 import {Card, CardContent, Divider, IconButton, Stack} from "@mui/material";
-import MoreVertIcon from '@mui/icons-material/MoreVert';
+import UserBasicDetail from '../../type/types.ts';
+import Exercise from '../../type/types.ts';
+import Training from '../../type/types.ts';
+import Activity from '../../type/types.ts';
+import ActivityProp from '../../type/types.ts';
+import ActivityStyle from './ActivityCardStyles.tsx';
 
-interface UserBasicDetail {
-    username : string,
-    userId: number
-}
-
-interface Exercise {
-    difficulty : string,
-    id : number,
-    muscle : string,
-    name : string,
-    type : string
-}
-
-interface Training {
-    exercise: Exercise,
-    amount: number,
-    repeats: number,
-    duration: number
-}
-interface Activity {
-    activityId: number,
-    user: UserBasicDetail,
-    date: Date,
-    description: string,
-    trainings: Training[]
-}
-interface ActivityProp {
-    activity: Activity
-}
-
-const activityStyle = {
-    bgcolor: 'background.paper',
-    borderColor: 'text.primary',
-    m: 1,
-    border: 1,
-    width: '40rem',
-    height: '15rem',
-    borderRadius: 1
-};
 
 const ActivityCard = ({ activity } : ActivityProp) => {
     const [trainings, setTrainings] = useState<Training[]>();
