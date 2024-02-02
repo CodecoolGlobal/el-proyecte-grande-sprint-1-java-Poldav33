@@ -1,24 +1,18 @@
 import ExerciseSelectButton from "../exercise-select-button";
-import React, {useState} from "react";
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
+import {ExerciseFilter} from "../../../type/types.ts";
+import {useState} from "react";
 
 
-interface ExerciseFilterInterface {
-    name : string[],
-    type : string[],
-    muscle :string[],
-    difficulty : string[],
-    onSubmit : (e : React.FormEvent<HTMLFormElement>,nameValue : string, typeValue : string,
-                muscleValue : string, difficultyValue : string) => void
-}
-const ExerciseFilter = ({name, type, muscle, difficulty, onSubmit}: ExerciseFilterInterface) => {
 
-    const [nameValue, setNameValue] = useState("");
-    const [typeValue, setTypeValue] = useState("");
-    const [muscleValue, setMuscleValue] = useState("");
-    const [difficultyValue, setDifficultyValue] = useState("");
+const ExerciseFilter = ({name, type, muscle, difficulty, onSubmit}: ExerciseFilter) => {
+
+    const [nameValue, setNameValue] = useState<string>("");
+    const [typeValue, setTypeValue] = useState<string>("");
+    const [muscleValue, setMuscleValue] = useState<string>("");
+    const [difficultyValue, setDifficultyValue] = useState<string>("");
 
     const onChange = (value: string, label: string) => {
         switch (label) {
