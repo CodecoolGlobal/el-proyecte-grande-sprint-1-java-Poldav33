@@ -3,12 +3,11 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import {ExerciseCard} from "../../../type/types.ts";
 
-interface ExerciseCardInterface {
-    activity : any
-}
 
-const ExerciseCard = ({activity}: ExerciseCardInterface) => {
+
+const ExerciseCard = ({exercise}: ExerciseCard) => {
     return (
         <Card
               sx={{
@@ -21,16 +20,16 @@ const ExerciseCard = ({activity}: ExerciseCardInterface) => {
               }}>
             <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
-                    {activity.name}
+                    {exercise.name}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                    {activity.type}
+                    {exercise.type}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                    {activity.muscle}
+                    {exercise.muscle}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                    {activity.difficulty}
+                    {exercise.difficulty}
                 </Typography>
             </CardContent>
             <CardActions>
