@@ -12,12 +12,10 @@ import Grid from '@mui/material/Grid';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import {LogInUser} from "../../type/types.ts";
+import {LogInUser, onSaveLoginUser} from "../../type/types.ts";
 import {useNavigate} from "react-router-dom";
 
-interface onSaveProp {
-    onSave : (user : LogInUser) => void
-}
+
 
 function Copyright() {
     return (
@@ -34,7 +32,7 @@ function Copyright() {
 
 const defaultTheme = createTheme();
 
-export default function SignInSide({onSave} : onSaveProp) {
+export default function SignInSide({onSave} : onSaveLoginUser) {
     const navigate = useNavigate();
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -58,8 +56,6 @@ export default function SignInSide({onSave} : onSaveProp) {
                     sx={{
                         backgroundImage: 'url(https://source.unsplash.com/random?wallpapers)',
                         backgroundRepeat: 'no-repeat',
-                        backgroundColor: (t) =>
-                            t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
                         backgroundSize: 'cover',
                         backgroundPosition: 'center',
                     }}
