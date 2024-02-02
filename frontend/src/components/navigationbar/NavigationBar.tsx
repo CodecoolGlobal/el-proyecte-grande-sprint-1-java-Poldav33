@@ -13,11 +13,9 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import {useNavigate} from "react-router-dom";
+import {Setting} from "../../type/types.ts";
 
-interface Setting {
-    name: string,
-    path: string
-}
+
 
 const pages = ['Recipes', 'Nutrition values', 'Exercises', 'New Activity', 'Recent Activities'];
 const navigationRouters = ['/recipes', '/nutrition', '/exercises', '/newactivity', '/timeline']
@@ -144,7 +142,7 @@ function NavigationBar() {
                     <Box sx={{ flexGrow: 0 }}>
                         <Tooltip title="Open settings">
                             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                <Avatar alt={localStorage.getItem("username")} src={`https://robohash.org/${localStorage.getItem("username")}`}/>
+                                <Avatar alt={localStorage.getItem("username")?.toString()} src={`https://robohash.org/${localStorage.getItem("username")}`}/>
                             </IconButton>
                         </Tooltip>
                         <Menu
