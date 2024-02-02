@@ -1,14 +1,7 @@
 import NewTrainingCard from "../newtrainingcard/NewTrainingCard.tsx";
 import Box from "@mui/material/Box";
-interface Training {
-    exercise: number,
-    amount: number,
-    repeats: number,
-    duration: number
-}
-interface Trainings {
-    trainings : Training[],
-}
+import { Trainings } from "../../../type/types.ts";
+
 
 const TrainingSummary = ({ trainings } : Trainings) => {
     return (
