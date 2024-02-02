@@ -23,31 +23,32 @@ const ExercisePage = () => {
     const difficulty = ["beginner", "intermediate", "expert"];
 
     useEffect(() => {
-        fetchData();
-    }, [filter]);
-
-    const fetchData =  () => {
-        const token = localStorage.getItem("jwt-token");
-        console.log(token);
-        fetch(`/api/exercises/filter?name=${filter.name}&type=${filter.type}&muscle=${filter.muscle}&difficulty=${filter.difficulty}`, {
-            headers: {
-                "Authorization": "Bearer " + token,
-            }
-            })
-            .then((res) => {
-                const response = res.json()
-                console.log(response);
-                return response;
-            })
-            .then((res) => {
-                console.log(res)
-                setExercises(res);
-                if (name.length < 1) {
-                    setName(res.map(response => response.name));
-                    console.log(name)
+        const fetchData =  () => {
+            const token = localStorage.getItem("jwt-token");
+            console.log(token);
+            fetch(`/api/exercises/filter?name=${filter.name}&type=${filter.type}&muscle=${filter.muscle}&difficulty=${filter.difficulty}`, {
+                headers: {
+                    "Authorization": "Bearer " + token,
                 }
             })
-    }
+                .then((res) => {
+                    const response = res.json()
+                    console.log(response);
+                    return response;
+                })
+                .then((res) => {
+                    console.log(res)
+                    setExercises(res);
+                    if (name.length < 1) {
+                        setName(res.map((response: Exercise) => response.name));
+                        console.log(name)
+                    }
+                })
+        }
+        fetchData();
+    }, [filter, name]);
+
+
 
     const onSubmit= (e: React.FormEvent<HTMLFormElement>, nameValue: string, typeValue: string, muscleValue: string, difficultyValue: string) => {
         e.preventDefault()
