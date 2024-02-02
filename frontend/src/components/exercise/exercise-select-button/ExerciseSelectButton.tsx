@@ -2,15 +2,11 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
+import { ExerciseSelectButton } from '../../../type/types.ts';
 
-interface ExerciseSelectButtonInterface {
-  label : string,
-  value : string
-  values :  string[],
-  onChange : (value: string, label: string) => void;
-}
 
-const ExerciseSelectButton = ({label, value, values, onChange}: ExerciseSelectButtonInterface) => {
+
+const ExerciseSelectButton = ({label, value, values, onChange}: ExerciseSelectButton) => {
 
   const handleChange = (event: SelectChangeEvent) => {
     event.preventDefault();
