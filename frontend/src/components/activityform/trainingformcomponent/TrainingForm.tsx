@@ -53,7 +53,6 @@ function TrainingForm({ onSave }: onSave)  {
 
     useEffect(() => {
         if (training.exerciseName != '') {
-            console.log(training);
             onSave(training);
         }
     }, [training]);
@@ -64,7 +63,7 @@ function TrainingForm({ onSave }: onSave)  {
                 <Typography component="h1" variant="h5">
                     Training
                 </Typography>
-                <Grid item xs={12} sx={{ mt: "0.5rem"}}>
+                <Grid item xs={10} sx={{ mt: "0.5rem"}}>
                     <InputLabel id="exercise-select">{"Exercise"}</InputLabel>
                     <Select
                         name={"exercise-select"}
@@ -74,7 +73,7 @@ function TrainingForm({ onSave }: onSave)  {
                         label={exerciseName}
                         onChange={handleChange}
                         sx={{
-                            width: "16rem"
+                            width: "21rem"
                         }}
                     >
                         <MenuItem value="">

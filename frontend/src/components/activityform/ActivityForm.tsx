@@ -14,11 +14,11 @@ import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import TrainingForm from "./trainingformcomponent/TrainingForm.tsx";
 import PlusIcon from "./plusicon";
 import {Button} from "@mui/material";
-import TrainingCard from "./trainingcard/TrainingCard.tsx";
+import NewTrainingCard from "./newtrainingcard/NewTrainingCard.tsx";
 import {useNavigate} from "react-router-dom";
 
 interface Training {
-    exerciseName: string,
+    name: string,
     amount: number,
     repeats: number,
     duration: number
@@ -45,6 +45,7 @@ const ActivityForm = () => {
 
     async function handleSubmit(event: React.FormEvent<HTMLFormElement>){
         event.preventDefault();
+        const token : string = localStorage.getItem("jwt-token");
         const data = new FormData(event.target as HTMLFormElement);
         const newActivity: Activity = {
             userId: 1,
@@ -52,9 +53,11 @@ const ActivityForm = () => {
             description: String(data.get("description")) || '',
             trainingsDTO: trainings
         }
+        console.log(newActivity)
         const response = await fetch("/api/activities", {
             method: "POST",
             headers: {
+                "Authorization": "Bearer " + token,
                 "Content-Type": "application/json",
             },
             body: JSON.stringify(newActivity)
@@ -120,9 +123,6 @@ const ActivityForm = () => {
                         endIcon={<PlusIcon />}>
                         Save Activity
                     </Button>
-                    <Box>
-                        {trainings && trainings.map((training: Training) => <TrainingCard training={training}/>)}
-                    </Box>
                 </Box>
                 <Grid container
                       spacing={1}
@@ -136,6 +136,9 @@ const ActivityForm = () => {
 
                     <TrainingForm onSave={onSave}/>
                 </Grid>
+                <Box>
+                    {trainings && trainings.map((training: Training) => <NewTrainingCard training={training}/>)}
+                </Box>
             </Container>
         </ThemeProvider>
         );

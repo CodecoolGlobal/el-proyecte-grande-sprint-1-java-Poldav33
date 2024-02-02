@@ -2,6 +2,7 @@ package com.codecool.backend.controller;
 
 import com.codecool.backend.controller.dto.FilterDTO;
 import com.codecool.backend.controller.dto.ExerciseDTO;
+import com.codecool.backend.controller.dto.NewExerciseDTO;
 import com.codecool.backend.model.Exercise;
 import com.codecool.backend.service.ExerciseService;
 import org.slf4j.Logger;
@@ -25,7 +26,7 @@ public class ExerciseController {
         this.exerciseService = exerciseService;
     }
 
-    @GetMapping("")
+    @GetMapping("/")
     public List<ExerciseDTO> getActivities() {
         List<ExerciseDTO> exerciseDTOS = new ArrayList<>();
         List<Exercise> exercises = exerciseService.getActivities();
@@ -46,7 +47,7 @@ public class ExerciseController {
         return new FilterDTO("key", "value");
     }
 
-    @GetMapping("filter")
+    @GetMapping("/filter")
     public List<ExerciseDTO> getFilteredExercises(@RequestParam Map<String, String> filters) {
         try {
             List<Exercise> exercisesFromDB = exerciseService.getFilteredExercises(createFilterDTOs(filters));
@@ -77,8 +78,15 @@ public class ExerciseController {
         return filterDTOS;
     }
     @PostMapping("/add")
-    public void addExercise(@RequestBody ExerciseDTO exerciseDTO) {
-        exerciseService.addExercise(exerciseDTO);
+    public void addExercise(@RequestBody NewExerciseDTO newExerciseDTO) {
+        exerciseService.addExercise(newExerciseDTO);
+    }
+
+    @PostMapping("/addAll")
+    public void addAllExercise(@RequestBody List<NewExerciseDTO> newExerciseDTOList) {
+        for (NewExerciseDTO exerciseDTO : newExerciseDTOList) {
+            exerciseService.addExercise(exerciseDTO);
+        }
     }
 
 }

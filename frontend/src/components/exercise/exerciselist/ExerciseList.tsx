@@ -13,7 +13,9 @@ const ExerciseList = ({exercises}: ExerciseListInterface) => {
         <Box className={"activity-container"}
              sx={{
                  display: 'flex',
-                 flexDirection: 'column',
+                 flexDirection: 'row',
+                 flexWrap: 'wrap',
+                 justifyContent: 'space-around',
                  alignItems: 'center',
                  marginLeft: 'auto',
                  marginRight: 'auto'

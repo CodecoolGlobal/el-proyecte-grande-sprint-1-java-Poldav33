@@ -1,4 +1,4 @@
-import TrainingCard from "../trainingcard/TrainingCard.tsx";
+import NewTrainingCard from "../newtrainingcard/NewTrainingCard.tsx";
 import Box from "@mui/material/Box";
 interface Training {
     exercise: number,
@@ -14,7 +14,7 @@ const TrainingSummary = ({ trainings } : Trainings) => {
     return (
         <Box>
             {
-                trainings.map((training : any) => <TrainingCard training={training}/>)
+                trainings.map((training : any) => <NewTrainingCard training={training}/>)
             }
         </Box>
     );

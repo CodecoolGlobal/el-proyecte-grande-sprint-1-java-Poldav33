@@ -8,13 +8,15 @@ import com.codecool.backend.repository.ExerciseRepository;
 import com.codecool.backend.repository.TrainingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 import java.util.Optional;
 
 @Service
 public class TrainingService {
-    private TrainingRepository trainingRepository;
-    private ActivityRepository activityRepository;
-    private ExerciseRepository exerciseRepository;
+    private final TrainingRepository trainingRepository;
+    private final ActivityRepository activityRepository;
+    private final ExerciseRepository exerciseRepository;
     @Autowired
     public TrainingService(TrainingRepository trainingRepository, ActivityRepository activityRepository, ExerciseRepository exerciseRepository) {
         this.trainingRepository = trainingRepository;
@@ -28,7 +30,10 @@ public class TrainingService {
                         exercise,
                         trainingDTO.repeats(),
                         trainingDTO.amount(),
-                        trainingDTO.durations())
+                        trainingDTO.duration())
                 ));
+    }
+    public List<Training> getTrainingsByActivityId(Long activityId) {
+        return trainingRepository.findByActivity_Id(activityId);
     }
 }
