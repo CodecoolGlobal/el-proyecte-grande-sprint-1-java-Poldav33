@@ -27,7 +27,7 @@ const ExercisePage = () => {
     }, [filter]);
 
     const fetchData =  () => {
-        const token = localStorage.getItem("jwt-token");
+        const token : string | null  = localStorage.getItem("jwt-token");
         console.log(token);
         fetch(`/api/exercises/filter?name=${filter.name}&type=${filter.type}&muscle=${filter.muscle}&difficulty=${filter.difficulty}`, {
             headers: {

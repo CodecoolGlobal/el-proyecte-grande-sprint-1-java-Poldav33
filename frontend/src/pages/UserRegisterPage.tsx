@@ -1,7 +1,7 @@
 import {useState} from 'react';
 import {useNavigate} from "react-router-dom";
-import SingUp from "./index.ts";
-import {RegistrationUser} from "../../type/types.ts";
+import SingUp from "../components/user-register-form";
+import {RegistrationUser} from "../type/types.ts";
 
 
 function userNameAndPasswordIsValid(username: string, password: string): boolean {

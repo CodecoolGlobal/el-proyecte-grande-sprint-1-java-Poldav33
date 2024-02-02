@@ -10,12 +10,15 @@ const Nutrition = () => {
         getNutritions()
     }, []);
     const getNutrition = async (nutrition: string) => {
+        const token : string | null = localStorage.getItem("jwt-token");
         const response = await fetch(`/api/nutrition?name=${nutrition}`)
         if (response.status === 400) {
             console.log(response.body)
         }
-        const fetchedNutrition = await response.json();
-        setNutrition(fetchedNutrition);
+        if (response.status === 200) {
+            const fetchedNutrition = await response.json();
+            setNutrition(fetchedNutrition);
+        }
     }
 
     async function getNutritions() {

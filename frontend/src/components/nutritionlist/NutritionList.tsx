@@ -20,8 +20,6 @@ const NutritionList : React.FC<NutritionListProps> = ({getNut, nutrition}) => {
     }
 
 
-
-
     return (
         <Box className={"parent"}>
             <form onSubmit={handleSubmit}>
@@ -36,7 +34,7 @@ const NutritionList : React.FC<NutritionListProps> = ({getNut, nutrition}) => {
             </form>
             <div className={"container"}>
 
-                {nutrition.map((nut: NutritionType) => (
+                {nutrition && nutrition.map((nut: NutritionType) => (
                     <div key={nut.name}>
                         <BasicCard nutrition={nut}/>
                     </div>
