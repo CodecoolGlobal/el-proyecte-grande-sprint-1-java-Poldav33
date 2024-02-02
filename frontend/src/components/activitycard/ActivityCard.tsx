@@ -3,23 +3,18 @@ import Typography from "@mui/material/Typography";
 import {useEffect, useState} from "react";
 import TrainingCard from "../trainingcard";
 import Avatar from "@mui/material/Avatar";
-import {Card, CardContent, Divider, IconButton, Stack} from "@mui/material";
-import UserBasicDetail from '../../type/types.ts';
-import Exercise from '../../type/types.ts';
-import Training from '../../type/types.ts';
-import Activity from '../../type/types.ts';
-import ActivityProp from '../../type/types.ts';
-import ActivityStyle from './ActivityCardStyles.tsx';
+import {Card, CardContent} from "@mui/material";
+import {Training, ActivityProp} from '../../type/types.ts';
 
 
 const ActivityCard = ({ activity } : ActivityProp) => {
-    const [trainings, setTrainings] = useState<Training[]>();
+    const [trainings, setTrainings] = useState<Training[]>([]);
     useEffect(() => {
         fetchData();
     }, []);
 
-    const fetchData = async () => {
-        const token : string = localStorage.getItem("jwt-token");
+    const fetchData = async () : Promise<void> => {
+        const token  : string  = localStorage.getItem("jwt-token")!;
         const response = await fetch(`/api/trainings?activityId=${activity.activityId}`,{
             headers: {
                 "Authorization": "Bearer " + token,
