@@ -1,24 +1,7 @@
 import {useEffect, useState} from "react";
 import Box from "@mui/material/Box";
 import ActivityCard from "../components/activitycard";
-
-interface UserBasicDetail {
-    userName : string,
-    userId: number
-}
-interface Training {
-    exerciseName: string,
-    amount: number,
-    repeats: number,
-    duration: number
-}
-interface Activity {
-    user: UserBasicDetail,
-    date: Date,
-    description: string,
-    trainings: Training[]
-}
-
+import { Activity } from "../type/types.ts";
 
 const ActivityTimeLine = () => {
     const [activities, setActivities] = useState<Activity[]>([]);
@@ -44,7 +27,7 @@ const ActivityTimeLine = () => {
         }}
         >
             {activities && activities.map(
-                (activity : Activity) => <ActivityCard activity={activity}/>
+                (activity) => <ActivityCard activity={activity}/>
             )}
         </Box>
     )
