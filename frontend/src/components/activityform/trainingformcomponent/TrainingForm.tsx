@@ -8,22 +8,11 @@ import React, {useEffect, useState} from "react";
 import InputLabel from "@mui/material/InputLabel";
 import Select, {SelectChangeEvent} from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
-
-interface onSave{
-    onSave: (training: Training) => void
-}
-
-interface Training {
-    exerciseName: string,
-    amount: number,
-    repeats: number,
-    duration: number
-}
-
+import {TrainingWithExerciseName, onSave} from "../../../type/types.ts";
 
 function TrainingForm({ onSave }: onSave)  {
     const [exerciseName, setExerciseName] = useState<string>("");
-    const [training, setTraining] = useState<Training>({
+    const [training, setTraining] = useState<TrainingWithExerciseName>({
         exerciseName: '',
         amount: 0,
         repeats: 0,
