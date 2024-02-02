@@ -1,6 +1,6 @@
 import {NutritionType} from "../../type/types.ts";
 import React from "react";
-import BasicCard from "./NutritionCard.tsx";
+import NutritionCard from "./NutritionCard.tsx";
 import "./NutritionList.css";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
@@ -38,7 +38,7 @@ const NutritionList : React.FC<NutritionListProps> = ({getNut, nutrition}) => {
 
                 {nutrition.map((nut: NutritionType) => (
                     <div key={nut.name}>
-                        <BasicCard nutrition={nut}/>
+                        <NutritionCard nutrition={nut}/>
                     </div>
                 ))}
 
